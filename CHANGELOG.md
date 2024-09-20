@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.3.0 (2024-09-20)
+
+### ✨ Minor
+
+  * ✨ Add repo branches and tags protection (!3) by Romain Deville ([`7987274`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/79872742854a1325bb627e4645cbf8090d4d5f9f))
+  * ✨ Add repo branches and tags protection by Romain Deville ([`0fa5446`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/0fa5446faed082b9b2c618f12c3b660060521ab9)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs and add examples by Romain Deville ([`cfe3ed0`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/cfe3ed0a928cfe3013c2c686022c795222ee9179)) 🔏
+
 ## v0.2.0 (2024-09-20)
 
 ### ✨ Minor
@@ -11,6 +22,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs and add examples by Romain Deville ([`15d0adb`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/15d0adb189734319cc0283e142456d4d1f8dc46e)) 🔏
+  * 🔖 v0.2.0 (NO-CI) by Python Semantic Release [bot] ([`77dd1f1`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/77dd1f10a30438468d3827bf3aa9bd4b5f3fc6ea))
 
 ## v0.1.0 (2024-09-18)
 
@@ -26,7 +38,6 @@
   * 🔧 Add commitlint config from DGS template by Romain Deville ([`02ea5c9`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/02ea5c9a2518c907b11e8c163fc10d17400aa26d)) 🔏
   * 🔧 Add cspell configuration from DGS template by Romain Deville ([`d3b8c3b`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/d3b8c3b0a233543b0955dd91ebb256b18a8b3ae5)) 🔏
   * 🔧 Add editorconfig from DGS template by Romain Deville ([`7deef3e`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/7deef3e5c657039f825c22d8bb1a07679e646eec)) 🔏
-  * 🔧 Add dotgit sync configuration by Romain Deville ([`b3dd432`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/b3dd432e862eee0925361aa2b69a928dfe6f75d9)) 🔏
 
 ### 🔊 Others
 
