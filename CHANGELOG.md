@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.2.0 (2024-09-20)
+
+### ✨ Minor
+
+  * ✨ Add basic project management (!2) by Romain Deville ([`048c529`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/048c5291d7adc9f69d6bfd7acee941169bdc7ef5))
+  * ✨ Add basic project management with all (non deprecated) settings by Romain Deville ([`8991947`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/8991947b6708f066ea44dc923fff0857cfcc6cf1)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs and add examples by Romain Deville ([`15d0adb`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/15d0adb189734319cc0283e142456d4d1f8dc46e)) 🔏
+
 ## v0.1.0 (2024-09-18)
 
 ### ✨ Minor
@@ -24,6 +35,7 @@
   * 📄 Update licenses from DGS by Romain Deville ([`c76eaed`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/c76eaed35e2716f8d33571d626934d3d1c558824)) 🔏
   * 📝 Add CODE_OF_CONDUCT from DGS by Romain Deville ([`2ab2255`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/2ab2255e50d414d9686de95c8f57f286fb15d2bf)) 🔏
   * 📝 Update README from DGS by Romain Deville ([`d251218`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/d2512189e00f35baf5fe456f97d93ff66c4cf980)) 🔏
+  * 🔖 v0.1.0 (NO-CI) by Python Semantic Release [bot] ([`cf839fa`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/cf839fa74e7b63d5dfca8e7cf83cfc9ee07962a5))
   * 🔨 Add .envrc from DGS template by Romain Deville ([`334ff43`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/334ff433f707b0bf7468d17fb0ced82a8f49dd3d)) 🔏
   * 🔨 Add devbox config from DGS template by Romain Deville ([`77fbbe0`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/77fbbe06d58d5b4684aeb797de13dae8e0604075)) 🔏
   * 🔨 Add pre-commit configuration from DGS template by Romain Deville ([`ffe4f5a`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/ffe4f5aa1ad3345a97f15c6d5858307ab02b743d)) 🔏
