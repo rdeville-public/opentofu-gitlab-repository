@@ -175,6 +175,84 @@ module "gitlab_group" {
 }
 ```
 
+### Manage Repository branches protection
+
+```hcl
+module "gitlab_group" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
+
+  # Required Variables
+  name        = "My Awesome Project"
+  description = "The best project of all time"
+
+  # Example values
+  branches_protection = {
+    "main" = {
+      # Below are default values
+      allow_force_push             = false
+      code_owner_approval_required = false
+      merge_access_level           = "maintainer"
+      push_access_level            = "no one"
+      unprotect_access_level       = "admin"
+      # Below are example values using all possible variables
+      allowed_to_merge = {
+        user_id = [
+          "1234",
+        ]
+        group_id = [
+          "9876"
+        ]
+      }
+      allowed_to_push = {
+        user_id = [
+          "1234",
+        ]
+        group_id = [
+          "9876"
+        ]
+      }
+      allowed_to_unprotect = {
+        user_id = [
+          "1234",
+        ]
+        group_id = [
+          "9876"
+        ]
+      }
+    }
+  }
+}
+```
+
+### Manage Repository tags protection
+
+```hcl
+module "gitlab_group" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
+
+  # Required Variables
+  name        = "My Awesome Project"
+  description = "The best project of all time"
+
+  # Example values
+  tags_protection = {
+    "v*" = {
+      # Below are default values
+      create_access_level = "maintainer"
+      # Below are example values using all possible variables
+      allowed_to_create = {
+        user_id = [
+          "1234",
+        ]
+        group_id = [
+          "9876"
+        ]
+      }
+    }
+  }
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -198,8 +276,12 @@ module "gitlab_group" {
 
 ### Resources
 
+* [resource.gitlab_branch_protection.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/branch_protection)
+  > Manage gitlab repository branch protection rules
 * [resource.gitlab_project.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project)
-  >
+  > Manage gitlab repository
+* [resource.gitlab_tag_protection.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/tag_protection)
+  > Manage gitlab repository branch protection rules
 
 <!-- markdownlint-capture -->
 ### Inputs
@@ -322,6 +404,8 @@ string
 * [settings_topics](#settings_topics)
 * [settings_visibility_level](#settings_visibility_level)
 * [settings_wiki_access_level](#settings_wiki_access_level)
+* [branches_protection](#branches_protection)
+* [tags_protection](#tags_protection)
 
 
 ##### `settings_path`
@@ -2450,6 +2534,132 @@ Set the wiki access level. Valid values are `disabled`, `private`, `enabled`.
 
   ```hcl
   disabled
+  ```
+
+  </div>
+</details>
+
+##### `branches_protection`
+
+Map of object, where the key is the branch name to protect and object is the
+branch protection configuration. The object support following attributes:
+
+* `allow_force_push`: Boolean, optional, Can be set to `true `to allow users
+  with push access to force push. Default to `false`.
+* `code_owner_approval_required`: Boolean, optional, can be set to `true` to
+  require code owner approval before merging. Default to `false`.
+
+  NOTE: Only available for Premium and Ultimate instances.
+* `merge_access_level`: String, optional, access levels allowed to merge.
+  Valid values are: `no one`, `developer`, `maintainer`. Default to
+  `maintainer`
+* `allowed_to_merge`: Object, optional, sets of user(s)/group(s) allowed to
+  merge to protected branch. Default to `null`. Object supports following
+  attributes:
+  * `group_id`: Set of number, optional, the IDs of GitLab groups allowed to
+    perform the relevant action.
+  * `user_id`: Set of number, optional, the IDs of GitLab users allowed to
+    perform the relevant action.
+* `push_access_level`: String, optional, access levels allowed to push. Valid
+  values are: `no one`, `developer`, `maintainer`. Default to `no one` forcing
+  to pass through merge request.
+* `allowed_to_push`: Object, optional, sets of user(s)/group(s) allowed to
+  push to protected branch. Default to `null`. Object supports following
+  attributes:
+  * `group_id`: Set of number, optional, the IDs of GitLab groups allowed to
+    perform the relevant action.
+  * `user_id`: Set of number, optional, the IDs of GitLab users allowed to
+    perform the relevant action.
+* `unprotect_access_level`: String, optional, access levels allowed to
+  unprotect. Valid values are: `developer`, `maintainer`, `admin`. Default to
+  `admin`.
+* `allowed_to_unprotect`: Object, optional, sets of user(s)/group(s) allowed to
+  unprotect protected branch. Default to `null`. Object supports following
+  attributes:
+  * `group_id`: Set of number, optional, the IDs of GitLab groups allowed to
+    perform the relevant action.
+  * `user_id`: Set of number, optional, the IDs of GitLab users allowed to
+    perform the relevant action.
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(object({
+    # Key is branch name
+    allow_force_push             = optional(bool, false)
+    code_owner_approval_required = optional(bool, false)
+    merge_access_level           = optional(string, "maintainer")
+    push_access_level            = optional(string, "no one")
+    unprotect_access_level       = optional(string, "admin")
+    allowed_to_merge = optional(object({
+      user_id  = optional(set(number), [])
+      group_id = optional(set(number), [])
+    }), {})
+    allowed_to_push = optional(object({
+      user_id  = optional(set(number), [])
+      group_id = optional(set(number), [])
+    }), {})
+    allowed_to_unprotect = optional(object({
+      user_id  = optional(set(number), [])
+      group_id = optional(set(number), [])
+    }), {})
+  }))
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
+
+##### `tags_protection`
+
+Map of object, where the key is the tag to be protected. Object support
+following attributes:
+
+* `create_access_level`: String, optional, access levels allowed to create.
+  Default value of `maintainer`.
+
+  The default value is always sent if not provided in the configuration.
+  Valid values are: `no one`, `developer`, `maintainer`.
+* `allowed_to_create`: Object configuring tag protection rules. The object
+  support following attributes:
+  * `group_id`: Number, optional, List of Gitlab groups IDs allowed to
+    perform the relevant action.
+  * `user_id`: Number, optional, List of Gitlab users IDs allowed to
+    perform the relevant action.
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(object({
+    create_access_level = optional(string, "maintainer")
+    allowed_to_create = optional(object({
+      user_id  = optional(set(number), [])
+      group_id = optional(set(number), [])
+    }), {})
+  }))
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
   ```
 
   </div>
