@@ -1010,3 +1010,24 @@ variable "tags_protection" {
   nullable = false
   default  = {}
 }
+
+# Repository labels variables
+# ------------------------------------------------------------------------
+variable "labels" {
+  # Key is the label name
+  type = map(object({
+    color       = string
+    description = string
+  }))
+  description = <<-EOM
+  Map of objects, where key is the label name and the object describe the lable.
+  Object support the following attributes:
+
+  * `color`: String, the color of the label given in 6-digit hex notation with
+    leading '#' sign (e.g. #FFAABB) or one of the CSS color names.
+  * `description`: String, the description of the label.
+  EOM
+
+  nullable = false
+  default  = {}
+}

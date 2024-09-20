@@ -197,3 +197,14 @@ resource "gitlab_tag_protection" "this" {
     }
   }
 }
+
+# Manage repo labels for issues and merge requests
+resource "gitlab_project_label" "this" {
+  for_each = var.labels
+
+  project = gitlab_project.this.id
+  name    = each.key
+
+  color       = each.value.color
+  description = each.value.description
+}

@@ -253,6 +253,30 @@ module "gitlab_group" {
 }
 ```
 
+### Manage Repository labels
+
+```hcl
+module "gitlab_group" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
+
+  # Required Variables
+  name        = "My Awesome Project"
+  description = "The best project of all time"
+
+  # Example values
+  labels = {
+    "TODO::Classify" = {
+      colors      = "#FF0000"
+      description = "Issues or MR that need to be classified"
+    }
+    "TODO::Assign" = {
+      colors      = "#DD0000"
+      description = "Issues or MR that need to be assigned to somebody"
+    }
+  }
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -280,6 +304,8 @@ module "gitlab_group" {
   > Manage gitlab repository branch protection rules
 * [resource.gitlab_project.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project)
   > Manage gitlab repository
+* [resource.gitlab_project_label.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_label)
+  > Manage repo labels for issues and merge requests
 * [resource.gitlab_tag_protection.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/tag_protection)
   > Manage gitlab repository branch protection rules
 
@@ -406,6 +432,7 @@ string
 * [settings_wiki_access_level](#settings_wiki_access_level)
 * [branches_protection](#branches_protection)
 * [tags_protection](#tags_protection)
+* [labels](#labels)
 
 
 ##### `settings_path`
@@ -2651,6 +2678,39 @@ following attributes:
       user_id  = optional(set(number), [])
       group_id = optional(set(number), [])
     }), {})
+  }))
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
+
+##### `labels`
+
+Map of objects, where key is the label name and the object describe the lable.
+Object support the following attributes:
+
+* `color`: String, the color of the label given in 6-digit hex notation with
+  leading '#' sign (e.g. #FFAABB) or one of the CSS color names.
+* `description`: String, the description of the label.
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(object({
+    color       = string
+    description = string
   }))
   ```
 
