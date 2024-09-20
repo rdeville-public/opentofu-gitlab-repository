@@ -1,3 +1,4 @@
+# Manage gitlab repository
 resource "gitlab_project" "this" {
   name        = var.settings_name
   description = var.settings_description
@@ -102,6 +103,97 @@ resource "gitlab_project" "this" {
     content {
       create = timeouts.value.create
       delete = timeouts.value.delete
+    }
+  }
+}
+
+# Manage gitlab repository branch protection rules
+resource "gitlab_branch_protection" "this" {
+  for_each = var.branches_protection
+
+  project = gitlab_project.this.id
+  branch  = each.key
+
+  allow_force_push             = each.value.allow_force_push
+  code_owner_approval_required = each.value.code_owner_approval_required
+  push_access_level            = each.value.push_access_level
+  merge_access_level           = each.value.merge_access_level
+  unprotect_access_level       = each.value.unprotect_access_level
+
+  dynamic "allowed_to_merge" {
+    for_each = each.value.allowed_to_merge.group_id
+
+    content {
+      group_id = allowed_to_merge.value
+    }
+  }
+
+  dynamic "allowed_to_merge" {
+    for_each = each.value.allowed_to_merge.user_id
+
+    content {
+      user_id = allowed_to_merge.value
+    }
+  }
+
+  dynamic "allowed_to_push" {
+    for_each = each.value.allowed_to_push.group_id
+
+    content {
+      group_id = allowed_to_push.value
+    }
+  }
+
+  dynamic "allowed_to_push" {
+    for_each = each.value.allowed_to_push.user_id
+
+    content {
+      user_id = allowed_to_push.value
+    }
+  }
+
+  dynamic "allowed_to_unprotect" {
+    for_each = each.value.allowed_to_unprotect.group_id
+
+    content {
+      group_id = allowed_to_unprotect.value
+    }
+  }
+
+  dynamic "allowed_to_unprotect" {
+    for_each = each.value.allowed_to_unprotect.user_id
+
+    content {
+      user_id = allowed_to_unprotect.value
+    }
+  }
+
+}
+
+# Manage gitlab repository branch protection rules
+resource "gitlab_tag_protection" "this" {
+  for_each = var.tags_protection
+
+  project = gitlab_project.this.id
+  tag     = each.key
+
+  create_access_level = each.value.create_access_level
+
+  dynamic "allowed_to_create" {
+    for_each = each.value.allowed_to_create.user_id
+
+    content {
+      access_level = allowed_to_create.value.access_level
+      user_id      = allowed_to_create.value.user_id
+    }
+  }
+
+  dynamic "allowed_to_create" {
+    for_each = each.value.allowed_to_create.group_id
+
+    content {
+      access_level = allowed_to_create.value.access_level
+      group_id     = allowed_to_create.value.group_id
     }
   }
 }
