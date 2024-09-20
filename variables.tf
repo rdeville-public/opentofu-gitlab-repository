@@ -908,3 +908,105 @@ variable "settings_wiki_access_level" {
   nullable = false
   default  = "disabled"
 }
+
+# Repository branch proection variables
+# ------------------------------------------------------------------------
+variable "branches_protection" {
+  type = map(object({
+    # Key is branch name
+    allow_force_push             = optional(bool, false)
+    code_owner_approval_required = optional(bool, false)
+    merge_access_level           = optional(string, "maintainer")
+    push_access_level            = optional(string, "no one")
+    unprotect_access_level       = optional(string, "admin")
+    allowed_to_merge = optional(object({
+      user_id  = optional(set(number), [])
+      group_id = optional(set(number), [])
+    }), {})
+    allowed_to_push = optional(object({
+      user_id  = optional(set(number), [])
+      group_id = optional(set(number), [])
+    }), {})
+    allowed_to_unprotect = optional(object({
+      user_id  = optional(set(number), [])
+      group_id = optional(set(number), [])
+    }), {})
+  }))
+
+  description = <<-EOM
+  Map of object, where the key is the branch name to protect and object is the
+  branch protection configuration. The object support following attributes:
+
+  * `allow_force_push`: Boolean, optional, Can be set to `true `to allow users
+    with push access to force push. Default to `false`.
+  * `code_owner_approval_required`: Boolean, optional, can be set to `true` to
+    require code owner approval before merging. Default to `false`.
+
+    NOTE: Only available for Premium and Ultimate instances.
+  * `merge_access_level`: String, optional, access levels allowed to merge.
+    Valid values are: `no one`, `developer`, `maintainer`. Default to
+    `maintainer`
+  * `allowed_to_merge`: Object, optional, sets of user(s)/group(s) allowed to
+    merge to protected branch. Default to `null`. Object supports following
+    attributes:
+    * `group_id`: Set of number, optional, the IDs of GitLab groups allowed to
+      perform the relevant action.
+    * `user_id`: Set of number, optional, the IDs of GitLab users allowed to
+      perform the relevant action.
+  * `push_access_level`: String, optional, access levels allowed to push. Valid
+    values are: `no one`, `developer`, `maintainer`. Default to `no one` forcing
+    to pass through merge request.
+  * `allowed_to_push`: Object, optional, sets of user(s)/group(s) allowed to
+    push to protected branch. Default to `null`. Object supports following
+    attributes:
+    * `group_id`: Set of number, optional, the IDs of GitLab groups allowed to
+      perform the relevant action.
+    * `user_id`: Set of number, optional, the IDs of GitLab users allowed to
+      perform the relevant action.
+  * `unprotect_access_level`: String, optional, access levels allowed to
+    unprotect. Valid values are: `developer`, `maintainer`, `admin`. Default to
+    `admin`.
+  * `allowed_to_unprotect`: Object, optional, sets of user(s)/group(s) allowed to
+    unprotect protected branch. Default to `null`. Object supports following
+    attributes:
+    * `group_id`: Set of number, optional, the IDs of GitLab groups allowed to
+      perform the relevant action.
+    * `user_id`: Set of number, optional, the IDs of GitLab users allowed to
+      perform the relevant action.
+  EOM
+
+  nullable = false
+  default  = {}
+}
+
+# Repository tag proection variables
+# ------------------------------------------------------------------------
+variable "tags_protection" {
+  # Key is the tag to protect
+  type = map(object({
+    create_access_level = optional(string, "maintainer")
+    allowed_to_create = optional(object({
+      user_id  = optional(set(number), [])
+      group_id = optional(set(number), [])
+    }), {})
+  }))
+  description = <<-EOM
+  Map of object, where the key is the tag to be protected. Object support
+  following attributes:
+
+  * `create_access_level`: String, optional, access levels allowed to create.
+    Default value of `maintainer`.
+
+    The default value is always sent if not provided in the configuration.
+    Valid values are: `no one`, `developer`, `maintainer`.
+  * `allowed_to_create`: Object configuring tag protection rules. The object
+    support following attributes:
+    * `group_id`: Number, optional, List of Gitlab groups IDs allowed to
+      perform the relevant action.
+    * `user_id`: Number, optional, List of Gitlab users IDs allowed to
+      perform the relevant action.
+  EOM
+
+  nullable = false
+  default  = {}
+}
