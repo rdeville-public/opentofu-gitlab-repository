@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.5.1 (2024-09-23)
+
+### 🩹 Patch
+
+  * 🐛 Fix CI variables with default values (!6) by Romain Deville ([`994e7c2`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/994e7c2f3aab8ef52e88f7402266df670b8aaa52))
+  * 🐛 Fix variables to make it optional by Romain Deville ([`b94e4d3`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/b94e4d34e167cd750cc2e09469e3e79f37d7d629)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs by Romain Deville ([`2603ba3`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/2603ba3856f88d58d82c07749f0f8e87cd054bad)) 🔏
+
 ## v0.5.0 (2024-09-23)
 
 ### ✨ Minor
@@ -11,6 +22,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs and add example by Romain Deville ([`3b141ab`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/3b141ab0bf1fc04de4b8e2175f4403c064577ddf)) 🔏
+  * 🔖 v0.5.0 (NO-CI) by Python Semantic Release [bot] ([`d6bc348`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/d6bc348792ffe17e00ae25c370dd3f6098378e16))
 
 ## v0.4.0 (2024-09-20)
 
@@ -61,7 +73,6 @@
   * 🔧 Add markdownlint config from DGS template by Romain Deville ([`dd324e8`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/dd324e8f0f836ffe2f7f6da0aff3050185a9666b)) 🔏
   * 🔧 Add commitlint config from DGS template by Romain Deville ([`02ea5c9`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/02ea5c9a2518c907b11e8c163fc10d17400aa26d)) 🔏
   * 🔧 Add cspell configuration from DGS template by Romain Deville ([`d3b8c3b`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/d3b8c3b0a233543b0955dd91ebb256b18a8b3ae5)) 🔏
-  * 🔧 Add editorconfig from DGS template by Romain Deville ([`7deef3e`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/7deef3e5c657039f825c22d8bb1a07679e646eec)) 🔏
 
 ### 🔊 Others
 
@@ -70,7 +81,6 @@
   * 🔖 v0.1.0 (NO-CI) by Python Semantic Release [bot] ([`cf839fa`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/cf839fa74e7b63d5dfca8e7cf83cfc9ee07962a5))
   * 🔨 Add .envrc from DGS template by Romain Deville ([`334ff43`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/334ff433f707b0bf7468d17fb0ced82a8f49dd3d)) 🔏
   * 🔨 Add devbox config from DGS template by Romain Deville ([`77fbbe0`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/77fbbe06d58d5b4684aeb797de13dae8e0604075)) 🔏
-  * 🔨 Add pre-commit configuration from DGS template by Romain Deville ([`ffe4f5a`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/ffe4f5aa1ad3345a97f15c6d5858307ab02b743d)) 🔏
 
 ## v0.0.0 (2024-09-18)
 
