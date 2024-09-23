@@ -288,7 +288,7 @@ module "gitlab_group" {
   description = "The best project of all time"
 
   # Example values
-  labels = {
+  variables = {
     # Minimal example
     "VAR_NAME" = {
       value       = "foo"
@@ -303,6 +303,52 @@ module "gitlab_group" {
       protected         = false
       raw               = false
       variable_type     = "env_var"
+    }
+  }
+}
+```
+
+### Manage Repository access_tokens
+
+```hcl
+module "gitlab_group" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
+
+  # Required Variables
+  name        = "My Awesome Project"
+  description = "The best project of all time"
+
+  # Example values
+  access_tokens = {
+    # Minimal required variables
+    "TOKEN_NAME" = {
+      scopes = [
+        "read_api"
+      ]
+      expires_at   = "2100-01-01"
+      access_level = "minimal"
+    }
+    # Set rotation and allow CI to access it as variables
+    "ANOTHER_TOKEN_NAME" = {
+      scopes = [
+        "read_api"
+      ]
+      expires_at   = "2100-01-01"
+      access_level = "minimal"
+      rotation_configuration = {
+        expiration_days    = "90"
+        rotate_before_days = "15"
+      }
+      ci_variable = {
+        # Setting name, like below, will change the name of the CI variable
+        name              = "OVERRIDE_CI_NAME"
+        description       = "A description example associated to the CI variable"
+        environment_scope = "*"
+        masked            = false
+        protected         = false
+        raw               = false
+        variable_type     = "env_var"
+      }
     }
   }
 }
@@ -335,6 +381,8 @@ module "gitlab_group" {
   > Manage gitlab repository branch protection rules
 * [resource.gitlab_project.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project)
   > Manage gitlab repository
+* [resource.gitlab_project_access_token.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_access_token)
+  > Manage repo access tokens
 * [resource.gitlab_project_label.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_label)
   > Manage repo labels for issues and merge requests
 * [resource.gitlab_project_variable.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_variable)
@@ -466,6 +514,7 @@ string
 * [branches_protection](#branches_protection)
 * [tags_protection](#tags_protection)
 * [labels](#labels)
+* [access_tokens](#access_tokens)
 * [variables](#variables)
 
 
@@ -2759,11 +2808,91 @@ Object support the following attributes:
   </div>
 </details>
 
+##### `access_tokens`
+
+Map of object, where key is the name of the access token. Object describe
+access tokens, and if need, set it as CI variable. Object support following
+attributes:
+
+* `expires_at`: Set of string, the scopes of the project access token.
+  Valid values are: `api`, `read_api`, `read_registry`, `write_registry`,
+  `read_repository`, `write_repository`, `create_runner`, `manage_runner`,
+  `ai_features`, `k8s_proxy`, `read_observability`, `write_observability`.
+* `expires_at`: String, when the token will expire, YYYY-MM-DD format.
+  Is automatically set when `rotation_configuration` is used.
+* `access_level`: String, optional, the access level for the project access
+  token. Valid values are: `no one`, `minimal`, `guest`, `reporter`,
+  `developer`, `maintainer`, `owner`. Default is `no one`.
+* `rotation_configuration`: Object, the configuration for when to rotate a
+  token automatically. Will not rotate a token until terraform apply is run.
+  Default to `null`. Object support following attributes:
+  * `expiration_days`: Number, the duration (in days) the new token should be
+    valid for.
+  * `rotate_before_days`: Number, The duration (in days) before the expiration
+    when the token should be rotated. As an example, if set to 7 days, the
+    token will rotate 7 days before the expiration date, but only when
+    terraform apply is run in that timeframe.
+* `ci_variable`: Object, optional, that expose the access token as CI
+  variable. Default to `null`. Object support following attributes:
+  * `value`: String, the value of the variable.
+  * `description`: String, the description of the variable.
+  * `environment_scope`: String, optional, the environment scope of the variable.
+    Defaults to all environment `*`.
+
+    Note: In Community Editions of Gitlab, values other than * will cause
+    inconsistent plans.
+  * `masked`: Boolean, optional, if set to `true`, the value of the variable
+    will be hidden in job logs. The value must meet the masking requirements.
+    Defaults to `false`.
+  * `protected`: Boolea, optional, if set to `true`, the variable will be passed
+    only to pipelines running on protected branches and tags. Defaults to `false`.
+  * `raw`: Boolean, optional, whether the variable is treated as a raw string.
+    When `true`, variables in the value are not expanded. Default to `false`.
+  * `variable_type`: String, optional, the type of a variable.
+    Valid values are: `env_var, :`file`. Default is `env_var`.
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(object({
+    scopes       = set(string)
+    expires_at   = string
+    access_level = optional(string, "no one")
+    rotation_configuration = optional(object({
+      expiration_days    = number
+      rotate_before_days = number
+    }), null)
+    ci_variable = optional(object({
+      description       = string
+      name              = optional(string, null)
+      environment_scope = optional(string, "*")
+      masked            = optional(bool, false)
+      protected         = optional(bool, false)
+      raw               = optional(bool, false)
+      variable_type     = optional(string, "env_var")
+    }), null)
+  }))
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
+
 ##### `variables`
 
 Map of object, where key is the variables key/name. Object describes variable
 and support following attributes:
-
 
 * `value`: String, the value of the variable.
 * `description`: String, the description of the variable.
@@ -2781,7 +2910,6 @@ and support following attributes:
   When `true`, variables in the value are not expanded. Default to `false`.
 * `variable_type`: String, optional, the type of a variable.
   Valid values are: `env_var, :`file`. Default is `env_var`.
-
 
 <details style="width: 100%;display: inline-block">
   <summary>Type & Default</summary>

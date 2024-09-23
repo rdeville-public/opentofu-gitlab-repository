@@ -1032,6 +1032,75 @@ variable "labels" {
   default  = {}
 }
 
+# Repository access tokens variables
+# ------------------------------------------------------------------------
+variable "access_tokens" {
+  # Key is access token name
+  type = map(object({
+    scopes       = set(string)
+    expires_at   = string
+    access_level = optional(string, "no one")
+    rotation_configuration = optional(object({
+      expiration_days    = number
+      rotate_before_days = number
+    }), null)
+    ci_variable = optional(object({
+      description       = string
+      name              = optional(string, null)
+      environment_scope = optional(string, "*")
+      masked            = optional(bool, false)
+      protected         = optional(bool, false)
+      raw               = optional(bool, false)
+      variable_type     = optional(string, "env_var")
+    }), null)
+  }))
+  description = <<-EOM
+  Map of object, where key is the name of the access token. Object describe
+  access tokens, and if need, set it as CI variable. Object support following
+  attributes:
+
+  * `expires_at`: Set of string, the scopes of the project access token.
+    Valid values are: `api`, `read_api`, `read_registry`, `write_registry`,
+    `read_repository`, `write_repository`, `create_runner`, `manage_runner`,
+    `ai_features`, `k8s_proxy`, `read_observability`, `write_observability`.
+  * `expires_at`: String, when the token will expire, YYYY-MM-DD format.
+    Is automatically set when `rotation_configuration` is used.
+  * `access_level`: String, optional, the access level for the project access
+    token. Valid values are: `no one`, `minimal`, `guest`, `reporter`,
+    `developer`, `maintainer`, `owner`. Default is `no one`.
+  * `rotation_configuration`: Object, the configuration for when to rotate a
+    token automatically. Will not rotate a token until terraform apply is run.
+    Default to `null`. Object support following attributes:
+    * `expiration_days`: Number, the duration (in days) the new token should be
+      valid for.
+    * `rotate_before_days`: Number, The duration (in days) before the expiration
+      when the token should be rotated. As an example, if set to 7 days, the
+      token will rotate 7 days before the expiration date, but only when
+      terraform apply is run in that timeframe.
+  * `ci_variable`: Object, optional, that expose the access token as CI
+    variable. Default to `null`. Object support following attributes:
+    * `value`: String, the value of the variable.
+    * `description`: String, the description of the variable.
+    * `environment_scope`: String, optional, the environment scope of the variable.
+      Defaults to all environment `*`.
+
+      Note: In Community Editions of Gitlab, values other than * will cause
+      inconsistent plans.
+    * `masked`: Boolean, optional, if set to `true`, the value of the variable
+      will be hidden in job logs. The value must meet the masking requirements.
+      Defaults to `false`.
+    * `protected`: Boolea, optional, if set to `true`, the variable will be passed
+      only to pipelines running on protected branches and tags. Defaults to `false`.
+    * `raw`: Boolean, optional, whether the variable is treated as a raw string.
+      When `true`, variables in the value are not expanded. Default to `false`.
+    * `variable_type`: String, optional, the type of a variable.
+      Valid values are: `env_var, :`file`. Default is `env_var`.
+  EOM
+
+  nullable = false
+  default  = {}
+}
+
 # Repository CI variable variables
 # ------------------------------------------------------------------------
 variable "variables" {
@@ -1050,7 +1119,6 @@ variable "variables" {
   Map of object, where key is the variables key/name. Object describes variable
   and support following attributes:
 
-
   * `value`: String, the value of the variable.
   * `description`: String, the description of the variable.
   * `environment_scope`: String, optional, the environment scope of the variable.
@@ -1067,7 +1135,6 @@ variable "variables" {
     When `true`, variables in the value are not expanded. Default to `false`.
   * `variable_type`: String, optional, the type of a variable.
     Valid values are: `env_var, :`file`. Default is `env_var`.
-
   EOM
 
   nullable = false

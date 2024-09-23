@@ -209,9 +209,19 @@ resource "gitlab_project_label" "this" {
   description = each.value.description
 }
 
+# Manage repo access tokens
+resource "gitlab_project_access_token" "this" {
+  for_each = var.access_tokens
+
+  project    = gitlab_project.this.id
+  name       = each.key
+  expires_at = each.value.expires_at
+  scopes     = each.value.scopes
+}
+
 # Manage repo variables accessible for CI
 resource "gitlab_project_variable" "this" {
-  for_each = var.variables
+  for_each = local.variables
 
   project     = gitlab_project.this.id
   key         = each.key
