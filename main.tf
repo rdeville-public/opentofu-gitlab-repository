@@ -246,3 +246,28 @@ resource "gitlab_project_mirror" "this" {
   keep_divergent_refs     = each.value.keep_divergent_refs
   only_protected_branches = each.value.only_protected_branches
 }
+
+# Manage repo hooks
+resource "gitlab_project_hook" "this" {
+  for_each = var.hooks
+
+  project = gitlab_project.this.id
+  url     = each.value.url
+
+  token                      = each.value.token
+  custom_webhook_template    = each.value.custom_webhook_template
+  confidential_issues_events = each.value.confidential_issues_events
+  confidential_note_events   = each.value.confidential_note_events
+  deployment_events          = each.value.deployment_events
+  enable_ssl_verification    = each.value.enable_ssl_verification
+  issues_events              = each.value.issues_events
+  job_events                 = each.value.job_events
+  merge_requests_events      = each.value.merge_requests_events
+  note_events                = each.value.note_events
+  pipeline_events            = each.value.pipeline_events
+  push_events                = each.value.push_events
+  push_events_branch_filter  = each.value.push_events_branch_filter
+  releases_events            = each.value.releases_events
+  tag_push_events            = each.value.tag_push_events
+  wiki_page_events           = each.value.wiki_page_events
+}
