@@ -281,3 +281,12 @@ resource "gitlab_project_badge" "this" {
   image_url = each.value.image_url
   link_url  = each.value.link_url
 }
+
+# Manage repo custom attributes
+resource "gitlab_project_custom_attribute" "this" {
+  for_each = var.custom_attributes
+
+  project = gitlab_project.this.id
+  key     = each.key
+  value   = each.value
+}

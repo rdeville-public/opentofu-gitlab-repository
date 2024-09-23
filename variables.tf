@@ -1254,3 +1254,14 @@ variable "badges" {
   nullable = false
   default  = {}
 }
+
+# Repository custom attributes variables
+# ------------------------------------------------------------------------
+variable "custom_attributes" {
+  type        = map(string)
+  description = "Map of string representing key/values of custom attributes."
+
+
+  nullable = false
+  default  = {}
+}
