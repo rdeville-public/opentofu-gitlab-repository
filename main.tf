@@ -208,3 +208,19 @@ resource "gitlab_project_label" "this" {
   color       = each.value.color
   description = each.value.description
 }
+
+# Manage repo variables accessible for CI
+resource "gitlab_project_variable" "this" {
+  for_each = var.variables
+
+  project     = gitlab_project.this.id
+  key         = each.key
+  value       = each.value.value
+  description = each.value.description
+
+  environment_scope = each.value.environment_scope
+  masked            = each.value.masked
+  protected         = each.value.protected
+  raw               = each.value.raw
+  variable_type     = each.value.variable_type
+}
