@@ -234,3 +234,15 @@ resource "gitlab_project_variable" "this" {
   raw               = each.value.raw
   variable_type     = each.value.variable_type
 }
+
+# Manage repo mirroring to another git server
+resource "gitlab_project_mirror" "this" {
+  for_each = var.mirrors
+
+  project = gitlab_project.this.id
+  url     = each.value.url
+
+  enabled                 = each.value.enabled
+  keep_divergent_refs     = each.value.keep_divergent_refs
+  only_protected_branches = each.value.only_protected_branches
+}

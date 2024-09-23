@@ -1140,3 +1140,30 @@ variable "variables" {
   nullable = false
   default  = {}
 }
+
+# Repository mirroring variables
+# ------------------------------------------------------------------------
+variable "mirrors" {
+  # Key is just a human readable identifier
+  type = map(object({
+    url                     = string
+    enabled                 = optional(bool, true)
+    keep_divergent_refs     = optional(bool, false)
+    only_protected_branches = optional(bool, true)
+  }))
+  description = <<-EOM
+  Map of object, where key is just a human readable identifier. Object support
+  the following attributes:
+
+  * `url`: String, sensitive, the URL of the remote repository to be mirrored.
+  * `enabled`: Boolean, optional, determines if the mirror is enabled. Default
+    to `true`.
+  * `keep_divergent_refs`: Boolean, optional, determines if divergent refs are
+    skipped. Default to `false`.
+  * `only_protected_branches`: Boolean, optional, determines if only protected
+    branches are mirrored. Default to `true`.
+  EOM
+
+  nullable = false
+  default  = {}
+}
