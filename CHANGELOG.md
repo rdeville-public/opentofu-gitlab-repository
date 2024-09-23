@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.7.0 (2024-09-23)
+
+### ✨ Minor
+
+  * ✨ Add repository mirroring management (!8) by Romain Deville ([`be5f903`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/be5f9032d8f6cd8bb3c6bf0ac9c6b3b7bd737645))
+  * ✨ Add repo mirroring management by Romain Deville ([`852f7e9`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/852f7e9fd5003752a89caf76becd9a49511f0a12)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs and add example by Romain Deville ([`ae21c02`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/ae21c02173ec1de52138367a0ccc620cbb61a00b)) 🔏
+
 ## v0.6.0 (2024-09-23)
 
 ### ✨ Minor
@@ -11,6 +22,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs and add examples by Romain Deville ([`100e4ea`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/100e4ea770c540da318f03c0c737c232cc2f3c79)) 🔏
+  * 🔖 v0.6.0 (NO-CI) by Python Semantic Release [bot] ([`347034b`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/347034b2e6dd1d9969c709b558b56c173c381513))
 
 ## v0.5.1 (2024-09-23)
 
@@ -81,8 +93,6 @@
 ### 🩹 Patch
 
   * 🔧 Add terraform-docs config from DGS template by Romain Deville ([`68046cf`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/68046cffa77e65f8db6f0ca4f717280f548b40c5)) 🔏
-  * 🔧 Add semantic release config from DGS template by Romain Deville ([`b216b2c`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/b216b2c35e38b780536f3f0bc7bb0f280931ee09)) 🔏
-  * 🔧 Add markdownlint config from DGS template by Romain Deville ([`dd324e8`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/dd324e8f0f836ffe2f7f6da0aff3050185a9666b)) 🔏
 
 ### 🔊 Others
 
