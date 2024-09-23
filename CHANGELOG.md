@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.5.0 (2024-09-23)
+
+### ✨ Minor
+
+  * ✨ Add Repo CI Variables (!5) by Romain Deville ([`7804efb`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/7804efb8482d6ff2a65f3e02b187f126eebe7dc7))
+  * ✨ Add repo CI variables management by Romain Deville ([`a52dc32`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/a52dc32951b0a91de73e62f004bd030e9ffc7ef4)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs and add example by Romain Deville ([`3b141ab`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/3b141ab0bf1fc04de4b8e2175f4403c064577ddf)) 🔏
+
 ## v0.4.0 (2024-09-20)
 
 ### ✨ Minor
@@ -11,6 +22,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs and add examples by Romain Deville ([`2197c18`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/2197c182ebe6f693bbea0766d827c5186ad88e57)) 🔏
+  * 🔖 v0.4.0 (NO-CI) by Python Semantic Release [bot] ([`bc0b527`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/bc0b527abeb2cbc6cc45573b9b8376ec95c610ad))
 
 ## v0.3.0 (2024-09-20)
 
@@ -55,12 +67,10 @@
 
   * 🎉 Initialization of the repo using DGS (!1) by Romain Deville ([`88b9a5f`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/88b9a5f0d1c972d2445b84042d96bfba2e152246))
   * 👷 Add Gitlab CI from DGS template by Romain Deville ([`fd2760f`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/fd2760fe2d36aeee3eb11a62709eab039debff58)) 🔏
-  * 📝 Add CODE_OF_CONDUCT from DGS by Romain Deville ([`2ab2255`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/2ab2255e50d414d9686de95c8f57f286fb15d2bf)) 🔏
   * 🔖 v0.1.0 (NO-CI) by Python Semantic Release [bot] ([`cf839fa`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/cf839fa74e7b63d5dfca8e7cf83cfc9ee07962a5))
   * 🔨 Add .envrc from DGS template by Romain Deville ([`334ff43`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/334ff433f707b0bf7468d17fb0ced82a8f49dd3d)) 🔏
   * 🔨 Add devbox config from DGS template by Romain Deville ([`77fbbe0`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/77fbbe06d58d5b4684aeb797de13dae8e0604075)) 🔏
   * 🔨 Add pre-commit configuration from DGS template by Romain Deville ([`ffe4f5a`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/ffe4f5aa1ad3345a97f15c6d5858307ab02b743d)) 🔏
-  * 🙈 Update gitignore from DGS by Romain Deville ([`1e68cab`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/1e68cab2b287c3e31faf820e70db470629cbec9e)) 🔏
 
 ## v0.0.0 (2024-09-18)
 
