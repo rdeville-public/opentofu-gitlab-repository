@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.6.0 (2024-09-23)
+
+### ✨ Minor
+
+  * ✨ Add repo access token with CI variables integration (!7) by Romain Deville ([`ef5691f`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/ef5691ffc2d108ee1c5f37e24027aa1d2b935723))
+  * ✨ Add Repo access token management with CI variable integration by Romain Deville ([`76c124a`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/76c124ad414db39b6677b9f4fe362bec046bf386)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs and add examples by Romain Deville ([`100e4ea`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/100e4ea770c540da318f03c0c737c232cc2f3c79)) 🔏
+
 ## v0.5.1 (2024-09-23)
 
 ### 🩹 Patch
@@ -11,6 +22,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs by Romain Deville ([`2603ba3`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/2603ba3856f88d58d82c07749f0f8e87cd054bad)) 🔏
+  * 🔖 v0.5.1 (NO-CI) by Python Semantic Release [bot] ([`4824518`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/4824518ed04f1fe65d95d78e155e0b980b80d762))
 
 ## v0.5.0 (2024-09-23)
 
@@ -71,8 +83,6 @@
   * 🔧 Add terraform-docs config from DGS template by Romain Deville ([`68046cf`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/68046cffa77e65f8db6f0ca4f717280f548b40c5)) 🔏
   * 🔧 Add semantic release config from DGS template by Romain Deville ([`b216b2c`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/b216b2c35e38b780536f3f0bc7bb0f280931ee09)) 🔏
   * 🔧 Add markdownlint config from DGS template by Romain Deville ([`dd324e8`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/dd324e8f0f836ffe2f7f6da0aff3050185a9666b)) 🔏
-  * 🔧 Add commitlint config from DGS template by Romain Deville ([`02ea5c9`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/02ea5c9a2518c907b11e8c163fc10d17400aa26d)) 🔏
-  * 🔧 Add cspell configuration from DGS template by Romain Deville ([`d3b8c3b`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/d3b8c3b0a233543b0955dd91ebb256b18a8b3ae5)) 🔏
 
 ### 🔊 Others
 
