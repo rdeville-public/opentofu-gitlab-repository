@@ -350,7 +350,6 @@ module "gitlab_group" {
 
 * [settings_name](#settings_name)
 * [settings_description](#settings_description)
-* [variables](#variables)
 
 ##### `settings_name`
 
@@ -376,50 +375,6 @@ A description of the project.
 
 ```hcl
 string
-```
-
-</details>
-</div>
-</div>
-
-##### `variables`
-
-Map of object, where key is the variables key/name. Object describes variable
-and support following attributes:
-
-
-* `value`: String, the value of the variable.
-* `description`: String, the description of the variable.
-* `environment_scope`: String, optional, the environment scope of the variable.
-  Defaults to all environment `*`.
-
-  Note: In Community Editions of Gitlab, values other than * will cause
-  inconsistent plans.
-* `masked`: Boolean, optional, if set to `true`, the value of the variable
-  will be hidden in job logs. The value must meet the masking requirements.
-  Defaults to `false`.
-* `protected`: Boolea, optional, if set to `true`, the variable will be passed
-  only to pipelines running on protected branches and tags. Defaults to `false`.
-* `raw`: Boolean, optional, whether the variable is treated as a raw string.
-  When `true`, variables in the value are not expanded. Default to `false`.
-* `variable_type`: String, optional, the type of a variable.
-  Valid values are: `env_var, :`file`. Default is `env_var`.
-
-
-<div style="display:inline-block;width:100%;">
-<div style="float:left;border-color:#FFFFFF;width:75%;">
-<details><summary>Type</summary>
-
-```hcl
-map(object({
-    value             = string
-    description       = string
-    environment_scope = optional(string, "*")
-    masked            = optional(bool, false)
-    protected         = optional(bool, false)
-    raw               = optional(bool, false)
-    variable_type     = optional(string, "env_var")
-  }))
 ```
 
 </details>
@@ -511,6 +466,7 @@ map(object({
 * [branches_protection](#branches_protection)
 * [tags_protection](#tags_protection)
 * [labels](#labels)
+* [variables](#variables)
 
 
 ##### `settings_path`
@@ -2789,6 +2745,59 @@ Object support the following attributes:
   map(object({
     color       = string
     description = string
+  }))
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
+
+##### `variables`
+
+Map of object, where key is the variables key/name. Object describes variable
+and support following attributes:
+
+
+* `value`: String, the value of the variable.
+* `description`: String, the description of the variable.
+* `environment_scope`: String, optional, the environment scope of the variable.
+  Defaults to all environment `*`.
+
+  Note: In Community Editions of Gitlab, values other than * will cause
+  inconsistent plans.
+* `masked`: Boolean, optional, if set to `true`, the value of the variable
+  will be hidden in job logs. The value must meet the masking requirements.
+  Defaults to `false`.
+* `protected`: Boolea, optional, if set to `true`, the variable will be passed
+  only to pipelines running on protected branches and tags. Defaults to `false`.
+* `raw`: Boolean, optional, whether the variable is treated as a raw string.
+  When `true`, variables in the value are not expanded. Default to `false`.
+* `variable_type`: String, optional, the type of a variable.
+  Valid values are: `env_var, :`file`. Default is `env_var`.
+
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(object({
+    value             = string
+    description       = string
+    environment_scope = optional(string, "*")
+    masked            = optional(bool, false)
+    protected         = optional(bool, false)
+    raw               = optional(bool, false)
+    variable_type     = optional(string, "env_var")
   }))
   ```
 
