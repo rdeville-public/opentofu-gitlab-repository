@@ -1069,4 +1069,7 @@ variable "variables" {
     Valid values are: `env_var, :`file`. Default is `env_var`.
 
   EOM
+
+  nullable = false
+  default  = {}
 }
