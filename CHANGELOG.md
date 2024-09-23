@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.10.0 (2024-09-23)
+
+### ✨ Minor
+
+  * ✨ Add repository custom attributes (!11) by Romain Deville ([`790d73c`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/790d73c997a26f68288cf7167f50a95bd224236c))
+  * ✨ Add repository custom attributes by Romain Deville ([`924cea3`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/924cea3c8fc61ef0a3d2b1ababc9682483e14552)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs and add example by Romain Deville ([`e519b0d`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/e519b0db57be9e039f19871c9fc095cdeaa0aa09)) 🔏
+
 ## v0.9.0 (2024-09-23)
 
 ### ✨ Minor
@@ -11,6 +22,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs, add examples and fix typo by Romain Deville ([`007948b`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/007948bea06bcd249396947e0ce9d8400fe9a0bc)) 🔏
+  * 🔖 v0.9.0 (NO-CI) by Python Semantic Release [bot] ([`e522029`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/e52202900c290c8f22b37854c411da6e7703d67d))
 
 ## v0.8.0 (2024-09-23)
 
@@ -101,7 +113,6 @@
 ### ✨ Minor
 
   * ✨ Add basic project management (!2) by Romain Deville ([`048c529`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/048c5291d7adc9f69d6bfd7acee941169bdc7ef5))
-  * ✨ Add basic project management with all (non deprecated) settings by Romain Deville ([`8991947`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/8991947b6708f066ea44dc923fff0857cfcc6cf1)) 🔏
 
 ### 🔊 Others
 
@@ -110,17 +121,6 @@
 
 ## v0.1.0 (2024-09-18)
 
-### ✨ Minor
-
-  * ✨ Add provider constraints by Romain Deville ([`90e8d59`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/90e8d59f0f3a744424a4f4e299b36e54b3f60ba0)) 🔏
-
 ### 🔊 Others
 
-  * 🎉 Initialization of the repo using DGS (!1) by Romain Deville ([`88b9a5f`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/88b9a5f0d1c972d2445b84042d96bfba2e152246))
   * 🔖 v0.1.0 (NO-CI) by Python Semantic Release [bot] ([`cf839fa`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/cf839fa74e7b63d5dfca8e7cf83cfc9ee07962a5))
-
-## v0.0.0 (2024-09-18)
-
-### 🔊 Others
-
-  * 🎉 Initial Commit by Romain Deville ([`fcea35b`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/fcea35bba226700fe5420a31b1c0db853dc1c616)) 🔏
