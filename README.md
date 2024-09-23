@@ -277,6 +277,37 @@ module "gitlab_group" {
 }
 ```
 
+### Manage Repository variables accessed by gitlab CI
+
+```hcl
+module "gitlab_group" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
+
+  # Required Variables
+  name        = "My Awesome Project"
+  description = "The best project of all time"
+
+  # Example values
+  labels = {
+    # Minimal example
+    "VAR_NAME" = {
+      value       = "foo"
+      description = "This is an example description"
+    }
+    # Using all variable parameter with default values
+    "ANOTHER_VAR_NAME" = {
+      value             = "bar"
+      description       = "This is another example description"
+      environment_scope = "*"
+      masked            = false
+      protected         = false
+      raw               = false
+      variable_type     = "env_var"
+    }
+  }
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -306,6 +337,8 @@ module "gitlab_group" {
   > Manage gitlab repository
 * [resource.gitlab_project_label.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_label)
   > Manage repo labels for issues and merge requests
+* [resource.gitlab_project_variable.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_variable)
+  > Manage repo variables accessible for CI
 * [resource.gitlab_tag_protection.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/tag_protection)
   > Manage gitlab repository branch protection rules
 
@@ -317,6 +350,7 @@ module "gitlab_group" {
 
 * [settings_name](#settings_name)
 * [settings_description](#settings_description)
+* [variables](#variables)
 
 ##### `settings_name`
 
@@ -342,6 +376,50 @@ A description of the project.
 
 ```hcl
 string
+```
+
+</details>
+</div>
+</div>
+
+##### `variables`
+
+Map of object, where key is the variables key/name. Object describes variable
+and support following attributes:
+
+
+* `value`: String, the value of the variable.
+* `description`: String, the description of the variable.
+* `environment_scope`: String, optional, the environment scope of the variable.
+  Defaults to all environment `*`.
+
+  Note: In Community Editions of Gitlab, values other than * will cause
+  inconsistent plans.
+* `masked`: Boolean, optional, if set to `true`, the value of the variable
+  will be hidden in job logs. The value must meet the masking requirements.
+  Defaults to `false`.
+* `protected`: Boolea, optional, if set to `true`, the variable will be passed
+  only to pipelines running on protected branches and tags. Defaults to `false`.
+* `raw`: Boolean, optional, whether the variable is treated as a raw string.
+  When `true`, variables in the value are not expanded. Default to `false`.
+* `variable_type`: String, optional, the type of a variable.
+  Valid values are: `env_var, :`file`. Default is `env_var`.
+
+
+<div style="display:inline-block;width:100%;">
+<div style="float:left;border-color:#FFFFFF;width:75%;">
+<details><summary>Type</summary>
+
+```hcl
+map(object({
+    value             = string
+    description       = string
+    environment_scope = optional(string, "*")
+    masked            = optional(bool, false)
+    protected         = optional(bool, false)
+    raw               = optional(bool, false)
+    variable_type     = optional(string, "env_var")
+  }))
 ```
 
 </details>
