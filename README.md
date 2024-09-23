@@ -43,7 +43,7 @@ OpenTofu module allowing to manage gitlab repository configuration.
 ### Manage Repository (also called Project in Gitlab)
 
 ```hcl
-module "gitlab_group" {
+module "gitlab_repo" {
   source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
 
   # Required Variables
@@ -55,7 +55,7 @@ module "gitlab_group" {
 ### Manage Repository with all settings
 
 ```hcl
-module "gitlab_group" {
+module "gitlab_repo" {
   source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
 
   # Required Variables
@@ -178,7 +178,7 @@ module "gitlab_group" {
 ### Manage Repository branches protection
 
 ```hcl
-module "gitlab_group" {
+module "gitlab_repo" {
   source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
 
   # Required Variables
@@ -227,7 +227,7 @@ module "gitlab_group" {
 ### Manage Repository tags protection
 
 ```hcl
-module "gitlab_group" {
+module "gitlab_repo" {
   source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
 
   # Required Variables
@@ -256,7 +256,7 @@ module "gitlab_group" {
 ### Manage Repository labels
 
 ```hcl
-module "gitlab_group" {
+module "gitlab_repo" {
   source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
 
   # Required Variables
@@ -280,7 +280,7 @@ module "gitlab_group" {
 ### Manage Repository variables accessed by gitlab CI
 
 ```hcl
-module "gitlab_group" {
+module "gitlab_repo" {
   source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
 
   # Required Variables
@@ -311,7 +311,7 @@ module "gitlab_group" {
 ### Manage Repository Access Tokens
 
 ```hcl
-module "gitlab_group" {
+module "gitlab_repo" {
   source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
 
   # Required Variables
@@ -357,7 +357,7 @@ module "gitlab_group" {
 ### Manage Repository Mirroring
 
 ```hcl
-module "gitlab_group" {
+module "gitlab_repo" {
   source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
 
   # Required Variables
@@ -380,7 +380,7 @@ module "gitlab_group" {
 ### Manage Repository hooks
 
 ```hcl
-module "gitlab_group" {
+module "gitlab_repo" {
   source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
 
   # Required Variables
@@ -409,6 +409,43 @@ module "gitlab_group" {
       subgroup_events            = false
       tag_push_events            = false
       wiki_page_events           = false
+    }
+  }
+}
+```
+
+### Manage Repository Mirroring
+
+```hcl
+module "gitlab_repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
+
+  # Required Variables
+  name        = "My Awesome Project"
+  description = "The best project of all time"
+
+  # Example value
+  badges = {
+    "Example" = {
+      link_url  = "https://example.com/badge-123"
+      image_url = "https://example.com/badge-123.svg"
+    }
+    # Below examples are directly taken from Terraform Registry and adapted for this module
+    # See: https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/group_badge
+    # Pipeline status badges with placeholders will be enabled for each project
+    "Pipeline" = {
+      link_url  = "https://gitlab.example.com/%%{project_path}/-/pipelines?ref=%%{default_branch}"
+      image_url = "https://gitlab.example.com/%%{project_path}/badges/%%{default_branch}/pipeline.svg"
+    }
+    # Test coverage report badges with placeholders will be enabled for each project
+    "Coverage" = {
+      link_url  = "https://gitlab.example.com/%%{project_path}/-/jobs"
+      image_url = "https://gitlab.example.com/%%{project_path}/badges/%%{default_branch}/coverage.svg"
+    }
+    # Latest release badges with placeholders will be enabled for each project
+    "Release" = {
+      link_url  = "https://gitlab.example.com/%%{project_path}/-/releases"
+      image_url = "https://gitlab.example.com/%%{project_path}/-/badges/release.svg"
     }
   }
 }
@@ -443,6 +480,8 @@ module "gitlab_group" {
   > Manage gitlab repository
 * [resource.gitlab_project_access_token.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_access_token)
   > Manage repo access tokens
+* [resource.gitlab_project_badge.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_badge)
+  > Manage repo badges
 * [resource.gitlab_project_hook.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_hook)
   > Manage repo hooks
 * [resource.gitlab_project_label.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_label)
@@ -582,6 +621,7 @@ string
 * [variables](#variables)
 * [mirrors](#mirrors)
 * [hooks](#hooks)
+* [badges](#badges)
 
 
 ##### `settings_path`
@@ -3109,6 +3149,38 @@ following attributes:
     releases_events            = optional(bool, false)
     tag_push_events            = optional(bool, false)
     wiki_page_events           = optional(bool, false)
+  }))
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
+
+##### `badges`
+
+Map of object, where key is the badges name and object describces repo badges.
+Object support following attributes:
+
+* `image_url`: String, the image url which will be presented on project overview.
+* `link_url`: String, the url linked with the badge.
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(object({
+    image_url = string
+    link_url  = string
   }))
   ```
 
