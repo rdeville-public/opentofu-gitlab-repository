@@ -1234,3 +1234,23 @@ variable "hooks" {
   nullable = false
   default  = {}
 }
+
+# Repository badges variables
+# ------------------------------------------------------------------------
+variable "badges" {
+  # Key is badges names
+  type = map(object({
+    image_url = string
+    link_url  = string
+  }))
+  description = <<-EOM
+  Map of object, where key is the badges name and object describces repo badges.
+  Object support following attributes:
+
+  * `image_url`: String, the image url which will be presented on project overview.
+  * `link_url`: String, the url linked with the badge.
+  EOM
+
+  nullable = false
+  default  = {}
+}

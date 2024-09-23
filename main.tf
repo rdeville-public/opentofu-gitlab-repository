@@ -271,3 +271,13 @@ resource "gitlab_project_hook" "this" {
   tag_push_events            = each.value.tag_push_events
   wiki_page_events           = each.value.wiki_page_events
 }
+
+# Manage repo badges
+resource "gitlab_project_badge" "this" {
+  for_each = var.badges
+
+  project   = gitlab_project.this.id
+  name      = each.key
+  image_url = each.value.image_url
+  link_url  = each.value.link_url
+}
