@@ -451,6 +451,24 @@ module "gitlab_repo" {
 }
 ```
 
+### Manage Repository Custom Attribues
+
+```hcl
+module "gitlab_repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
+
+  # Required Variables
+  name        = "My Awesome Project"
+  description = "The best project of all time"
+
+  # Example value
+  custom_attribute = {
+    "Key"         = "value"
+    "Another Key" = "value"
+  }
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -482,6 +500,8 @@ module "gitlab_repo" {
   > Manage repo access tokens
 * [resource.gitlab_project_badge.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_badge)
   > Manage repo badges
+* [resource.gitlab_project_custom_attribute.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_custom_attribute)
+  > Manage repo custom attributes
 * [resource.gitlab_project_hook.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_hook)
   > Manage repo hooks
 * [resource.gitlab_project_label.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_label)
@@ -622,6 +642,7 @@ string
 * [mirrors](#mirrors)
 * [hooks](#hooks)
 * [badges](#badges)
+* [custom_attributes](#custom_attributes)
 
 
 ##### `settings_path`
@@ -3182,6 +3203,30 @@ Object support following attributes:
     image_url = string
     link_url  = string
   }))
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
+
+##### `custom_attributes`
+
+Map of string representing key/values of custom attributes.
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(string)
   ```
 
   </div>
