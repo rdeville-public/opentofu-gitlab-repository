@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.9.0 (2024-09-23)
+
+### ✨ Minor
+
+  * ✨ Add repository badges management (!10) by Romain Deville ([`187842c`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/187842c3f72861d163ab54f3e50b1ecf1ad1776e))
+  * ✨ Add Repo badges management by Romain Deville ([`71586ad`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/71586ad9bead20e238fbea16c693a55d13a00cc3)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs, add examples and fix typo by Romain Deville ([`007948b`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/007948bea06bcd249396947e0ce9d8400fe9a0bc)) 🔏
+
 ## v0.8.0 (2024-09-23)
 
 ### ✨ Minor
@@ -11,6 +22,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs and add example by Romain Deville ([`0a1768b`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/0a1768be6cd77d4139da54b9a2573311ad76db27)) 🔏
+  * 🔖 v0.8.0 (NO-CI) by Python Semantic Release [bot] ([`d44a98d`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/d44a98dac1c57d36741515403fe44fa7c6a0a28f))
 
 ## v0.7.0 (2024-09-23)
 
@@ -106,8 +118,6 @@
 
   * 🎉 Initialization of the repo using DGS (!1) by Romain Deville ([`88b9a5f`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/88b9a5f0d1c972d2445b84042d96bfba2e152246))
   * 🔖 v0.1.0 (NO-CI) by Python Semantic Release [bot] ([`cf839fa`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/cf839fa74e7b63d5dfca8e7cf83cfc9ee07962a5))
-  * 🔨 Add .envrc from DGS template by Romain Deville ([`334ff43`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/334ff433f707b0bf7468d17fb0ced82a8f49dd3d)) 🔏
-  * 🔨 Add devbox config from DGS template by Romain Deville ([`77fbbe0`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/77fbbe06d58d5b4684aeb797de13dae8e0604075)) 🔏
 
 ## v0.0.0 (2024-09-18)
 
