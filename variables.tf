@@ -1302,3 +1302,86 @@ variable "level_mr_approval" {
   nullable = false
   default  = {}
 }
+
+# Repository level notifications variables
+# ------------------------------------------------------------------------
+variable "preset_level_notifications" {
+  type        = set(string)
+  description = <<-EOM
+  Set of String, level of the notification. Valid values are: `disabled`,
+  `participating`, `watch`, `global`, `mention`.
+
+  If you want to set custom level notification, see `custom_level_notifications`.
+  EOM
+
+  nullable = false
+  default  = []
+}
+
+variable "custom_level_notifications" {
+  # Key is just a human readable identifier
+  type = map(object({
+    close_issue                  = optional(bool, false)
+    close_merge_request          = optional(bool, false)
+    failed_pipeline              = optional(bool, false)
+    fixed_pipeline               = optional(bool, false)
+    issue_due                    = optional(bool, false)
+    merge_merge_request          = optional(bool, false)
+    merge_when_pipeline_succeeds = optional(bool, false)
+    moved_project                = optional(bool, false)
+    new_issue                    = optional(bool, false)
+    new_merge_request            = optional(bool, false)
+    new_note                     = optional(bool, false)
+    push_to_merge_request        = optional(bool, false)
+    reassign_issue               = optional(bool, false)
+    reassign_merge_request       = optional(bool, false)
+    reopen_issue                 = optional(bool, false)
+    reopen_merge_request         = optional(bool, false)
+    success_pipeline             = optional(bool, false)
+  }))
+  description = <<-EOM
+  Map of object, where key is just a human readable identifier and object allow
+  setting custom level notification. Object support following attributes:
+
+  * `close_issue`: Boolean, optional, enable notifications for closed issues.
+    Can only be used when level is `custom`. Default to `false`.
+  * `close_merge_request`: Boolean, optional, enable notifications for closed
+    merge requests. Can only be used when level is `custom`. Default to `false`.
+  * `failed_pipeline`: Boolean, optional, enable notifications for failed
+    pipelines. Can only be used when level is `custom`. Default to `false`.
+  * `fixed_pipeline`: Boolean, optional, enable notifications for fixed
+    pipelines. Can only be used when level is `custom`. Default to `false`.
+  * `issue_due`: Boolean, optional, enable notifications for due issues. Can
+    only be used when level is `custom`. Default to `false`.
+  * `merge_merge_request`: Boolean, optional, enable notifications for merged
+    merge requests. Can only be used when level is `custom`. Default to `false`.
+  * `merge_when_pipeline_succeeds`: Boolean, optional, enable notifications for
+    merged merge requests when the pipeline succeeds. Can only be used when
+    level is `custom`. Default to `false`.
+  * `moved_project`: Boolean, optional, enable notifications for moved projects.
+    Can only be used when level is `custom`. Default to `false`.
+  * `new_issue`: Boolean, optional, enable notifications for new issues. Can
+    only be used when level is `custom`. Default to `false`.
+  * `new_merge_request`: Boolean, optional, enable notifications for new merge
+    requests. Can only be used when level is `custom`. Default to `false`.
+  * `new_note`: Boolean, optional, enable notifications for new notes on merge
+    requests. Can only be used when level is `custom`. Default to `false`.
+  * `push_to_merge_request`: Boolean, optional, enable notifications for push to
+    merge request branches. Can only be used when level is `custom`.
+    Default to `false`.
+  * `reassign_issue`: Boolean, optional, enable notifications for issue
+    reassignments. Can only be used when level is `custom`. Default to `false`.
+  * `reassign_merge_request`: Boolean, optional, enable notifications for merge
+    request reassignments. Can only be used when level is `custom`.
+    Default to `false`.
+  * `reopen_issue`: Boolean, optional, enable notifications for reopened issues.
+    Can only be used when level is `custom`. Default to `false`.
+  * `reopen_merge_request`: Boolean, optional, enable notifications for reopened
+    merge requests. Can only be used when level is `custom`. Default to `false`.
+  * `success_pipeline`: Boolean, optional, Enable notifications for successful
+    pipelines. Can only be used when level is `custom`. Default to `false`.
+  EOM
+
+  nullable = false
+  default  = {}
+}
