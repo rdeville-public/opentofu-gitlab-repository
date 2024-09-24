@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.12.0 (2024-09-24)
+
+### ✨ Minor
+
+  * ✨ Add repo level notifications management (!13) by Romain Deville ([`6a6693c`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/6a6693cef6243dab8871221e31ce4c933fc14ede))
+  * ✨ Add repo level notifications management by Romain Deville ([`07f93cd`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/07f93cd5eb89b86f7a43b67e2ba34f1a6f3459dd)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs and add example by Romain Deville ([`503c96b`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/503c96be72c3ca9efc07f6bfd85b2aef4e7c196f)) 🔏
+
 ## v0.11.0 (2024-09-24)
 
 ### ✨ Minor
@@ -11,6 +22,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs and add example by Romain Deville ([`d81fdef`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/d81fdef9cc02ecaf90f1c0b415afb9412316ac1d)) 🔏
+  * 🔖 v0.11.0 (NO-CI) by Python Semantic Release [bot] ([`9316786`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/9316786bbdeda2041798867db32dbc27b4a33d36))
 
 ## v0.10.0 (2024-09-23)
 
@@ -101,7 +113,6 @@
 ### ✨ Minor
 
   * ✨ Add repo labels management (!4) by Romain Deville ([`f62db31`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/f62db31503ed55d41ad1836310179021c96fe26c))
-  * ✨ Add repo labels management by Romain Deville ([`5ee12f8`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/5ee12f821fca8a2dd8312b6696fb1826a5a0f201)) 🔏
 
 ### 🔊 Others
 
@@ -110,17 +121,6 @@
 
 ## v0.3.0 (2024-09-20)
 
-### ✨ Minor
-
-  * ✨ Add repo branches and tags protection (!3) by Romain Deville ([`7987274`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/79872742854a1325bb627e4645cbf8090d4d5f9f))
-
 ### 🔊 Others
 
-  * 📝 Update README from tf-docs and add examples by Romain Deville ([`cfe3ed0`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/cfe3ed0a928cfe3013c2c686022c795222ee9179)) 🔏
   * 🔖 v0.3.0 (NO-CI) by Python Semantic Release [bot] ([`7e1c646`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/7e1c6464f9cf3b24f761cd389598840881ce6851))
-
-## v0.2.0 (2024-09-20)
-
-### 🔊 Others
-
-  * 🔖 v0.2.0 (NO-CI) by Python Semantic Release [bot] ([`77dd1f1`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/77dd1f10a30438468d3827bf3aa9bd4b5f3fc6ea))
