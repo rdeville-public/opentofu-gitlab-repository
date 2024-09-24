@@ -303,3 +303,35 @@ resource "gitlab_project_level_mr_approvals" "this" {
   reset_approvals_on_push                        = var.level_mr_approval.reset_approvals_on_push
   selective_code_owner_removals                  = var.level_mr_approval.selective_code_owner_removals
 }
+
+# Manage repo notification levels
+resource "gitlab_project_level_notifications" "preset" {
+  for_each = var.preset_level_notifications
+
+  project = gitlab_project.this.id
+  level   = each.value
+}
+
+resource "gitlab_project_level_notifications" "custom" {
+  for_each = var.custom_level_notifications
+
+  project                      = gitlab_project.this.id
+  level                        = "custom"
+  close_issue                  = each.value.close_issue
+  close_merge_request          = each.value.close_merge_request
+  failed_pipeline              = each.value.failed_pipeline
+  fixed_pipeline               = each.value.fixed_pipeline
+  issue_due                    = each.value.issue_due
+  merge_merge_request          = each.value.merge_merge_request
+  merge_when_pipeline_succeeds = each.value.merge_when_pipeline_succeeds
+  moved_project                = each.value.moved_project
+  new_issue                    = each.value.new_issue
+  new_merge_request            = each.value.new_merge_request
+  new_note                     = each.value.new_note
+  push_to_merge_request        = each.value.push_to_merge_request
+  reassign_issue               = each.value.reassign_issue
+  reassign_merge_request       = each.value.reassign_merge_request
+  reopen_issue                 = each.value.reopen_issue
+  reopen_merge_request         = each.value.reopen_merge_request
+  success_pipeline             = each.value.success_pipeline
+}
