@@ -1265,3 +1265,40 @@ variable "custom_attributes" {
   nullable = false
   default  = {}
 }
+
+# Repository mr level approuval variables
+# ------------------------------------------------------------------------
+variable "level_mr_approval" {
+  type = object({
+    disable_overriding_approvers_per_merge_request = optional(bool, false)
+    merge_requests_author_approval                 = optional(bool, false)
+    merge_requests_disable_committers_approval     = optional(bool, true)
+    require_password_to_approve                    = optional(bool, false)
+    reset_approvals_on_push                        = optional(bool, true)
+    selective_code_owner_removals                  = optional(bool, true)
+  })
+  description = <<-EOM
+  Map of object, where key is just an human readable identifier. Object support
+  following attributes:
+
+  * `disable_overriding_approvers_per_merge_request`: Boolean, optional, set to
+    `true` to disable overriding approvers per merge request. Default to `false`.
+  * `merge_requests_author_approval`: Boolean, optional, set to `true` to allow
+    merge requests authors to approve their own merge requests. Default to `false`.
+  * `merge_requests_disable_committers_approval`: Boolean, optional, set to
+    `false` to allow merge request committers from approving their own merge
+    requests. Default to `true`.
+  * `require_password_to_approve`: Boolean, optional, set to `true` to require
+    authentication to approve merge requests. Default to `false`.
+  * `reset_approvals_on_push`: Boolean, optional, set to `true` to remove all
+    approvals in a merge request when new commits are pushed to its source branch.
+    Default to `true`.
+  * `selective_code_owner_removals`: Boolean, optional, reset approvals from
+    Code Owners if their files changed. Can be enabled only if
+   `reset_approvals_on_push` is disabled. Default to `true`.
+
+  EOM
+
+  nullable = false
+  default  = {}
+}
