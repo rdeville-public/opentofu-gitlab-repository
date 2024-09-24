@@ -469,6 +469,28 @@ module "gitlab_repo" {
 }
 ```
 
+### Manage Repository Level MR Approvals
+
+```hcl
+module "gitlab_repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
+
+  # Required Variables
+  name        = "My Awesome Project"
+  description = "The best project of all time"
+
+  # Example value
+  level_mr_approval = {
+    disable_overriding_approvers_per_merge_request = false
+    merge_requests_author_approval                 = false
+    merge_requests_disable_committers_approval     = true
+    require_password_to_approve                    = false
+    reset_approvals_on_push                        = true
+    selective_code_owner_removals                  = true
+  }
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -506,6 +528,8 @@ module "gitlab_repo" {
   > Manage repo hooks
 * [resource.gitlab_project_label.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_label)
   > Manage repo labels for issues and merge requests
+* [resource.gitlab_project_level_mr_approvals.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_level_mr_approvals)
+  > Manage repo mr level approval
 * [resource.gitlab_project_mirror.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_mirror)
   > Manage repo mirroring to another git server
 * [resource.gitlab_project_variable.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_variable)
@@ -643,6 +667,7 @@ string
 * [hooks](#hooks)
 * [badges](#badges)
 * [custom_attributes](#custom_attributes)
+* [level_mr_approval](#level_mr_approval)
 
 
 ##### `settings_path`
@@ -3227,6 +3252,56 @@ Map of string representing key/values of custom attributes.
 
   ```hcl
   map(string)
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
+
+##### `level_mr_approval`
+
+Map of object, where key is just an human readable identifier. Object support
+following attributes:
+
+* `disable_overriding_approvers_per_merge_request`: Boolean, optional, set to
+  `true` to disable overriding approvers per merge request. Default to `false`.
+* `merge_requests_author_approval`: Boolean, optional, set to `true` to allow
+  merge requests authors to approve their own merge requests. Default to `false`.
+* `merge_requests_disable_committers_approval`: Boolean, optional, set to
+  `false` to allow merge request committers from approving their own merge
+  requests. Default to `true`.
+* `require_password_to_approve`: Boolean, optional, set to `true` to require
+  authentication to approve merge requests. Default to `false`.
+* `reset_approvals_on_push`: Boolean, optional, set to `true` to remove all
+  approvals in a merge request when new commits are pushed to its source branch.
+  Default to `true`.
+* `selective_code_owner_removals`: Boolean, optional, reset approvals from
+  Code Owners if their files changed. Can be enabled only if
+ `reset_approvals_on_push` is disabled. Default to `true`.
+
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  object({
+    disable_overriding_approvers_per_merge_request = optional(bool, false)
+    merge_requests_author_approval                 = optional(bool, false)
+    merge_requests_disable_committers_approval     = optional(bool, true)
+    require_password_to_approve                    = optional(bool, false)
+    reset_approvals_on_push                        = optional(bool, true)
+    selective_code_owner_removals                  = optional(bool, true)
+  })
   ```
 
   </div>

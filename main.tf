@@ -290,3 +290,16 @@ resource "gitlab_project_custom_attribute" "this" {
   key     = each.key
   value   = each.value
 }
+
+# Manage repo mr level approval
+resource "gitlab_project_level_mr_approvals" "this" {
+  for_each = var.level_mr_approval
+
+  project                                        = gitlab_project.this.id
+  disable_overriding_approvers_per_merge_request = var.level_mr_approval.disable_overriding_approvers_per_merge_request
+  merge_requests_author_approval                 = var.level_mr_approval.merge_requests_author_approval
+  merge_requests_disable_committers_approval     = var.level_mr_approval.merge_requests_disable_committers_approval
+  require_password_to_approve                    = var.level_mr_approval.require_password_to_approve
+  reset_approvals_on_push                        = var.level_mr_approval.reset_approvals_on_push
+  selective_code_owner_removals                  = var.level_mr_approval.selective_code_owner_removals
+}
