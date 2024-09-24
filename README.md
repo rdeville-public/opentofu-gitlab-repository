@@ -491,6 +491,44 @@ module "gitlab_repo" {
 }
 ```
 
+### Manage Repository Level MR Approvals
+
+```hcl
+module "gitlab_repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
+
+  # Required Variables
+  name        = "My Awesome Project"
+  description = "The best project of all time"
+
+  # Example value
+  preset_level_notifications = [
+    "disabled"
+  ]
+  custom_level_notifications = {
+    "custom-name" = {
+      close_issue                  = false
+      close_merge_request          = false
+      failed_pipeline              = false
+      fixed_pipeline               = false
+      issue_due                    = false
+      merge_merge_request          = false
+      merge_when_pipeline_succeeds = false
+      moved_project                = false
+      new_issue                    = false
+      new_merge_request            = false
+      new_note                     = false
+      push_to_merge_request        = false
+      reassign_issue               = false
+      reassign_merge_request       = false
+      reopen_issue                 = false
+      reopen_merge_request         = false
+      success_pipeline             = false
+    }
+  }
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -530,6 +568,10 @@ module "gitlab_repo" {
   > Manage repo labels for issues and merge requests
 * [resource.gitlab_project_level_mr_approvals.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_level_mr_approvals)
   > Manage repo mr level approval
+* [resource.gitlab_project_level_notifications.custom](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_level_notifications)
+  >
+* [resource.gitlab_project_level_notifications.preset](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_level_notifications)
+  > Manage repo notification levels
 * [resource.gitlab_project_mirror.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_mirror)
   > Manage repo mirroring to another git server
 * [resource.gitlab_project_variable.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_variable)
@@ -668,6 +710,8 @@ string
 * [badges](#badges)
 * [custom_attributes](#custom_attributes)
 * [level_mr_approval](#level_mr_approval)
+* [preset_level_notifications](#preset_level_notifications)
+* [custom_level_notifications](#custom_level_notifications)
 
 
 ##### `settings_path`
@@ -3302,6 +3346,116 @@ following attributes:
     reset_approvals_on_push                        = optional(bool, true)
     selective_code_owner_removals                  = optional(bool, true)
   })
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
+
+##### `preset_level_notifications`
+
+Set of String, level of the notification. Valid values are: `disabled`,
+`participating`, `watch`, `global`, `mention`.
+
+If you want to set custom level notification, see `custom_level_notifications`.
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  set(string)
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  []
+  ```
+
+  </div>
+</details>
+
+##### `custom_level_notifications`
+
+Map of object, where key is just a human readable identifier and object allow
+setting custom level notification. Object support following attributes:
+
+* `close_issue`: Boolean, optional, enable notifications for closed issues.
+  Can only be used when level is `custom`. Default to `false`.
+* `close_merge_request`: Boolean, optional, enable notifications for closed
+  merge requests. Can only be used when level is `custom`. Default to `false`.
+* `failed_pipeline`: Boolean, optional, enable notifications for failed
+  pipelines. Can only be used when level is `custom`. Default to `false`.
+* `fixed_pipeline`: Boolean, optional, enable notifications for fixed
+  pipelines. Can only be used when level is `custom`. Default to `false`.
+* `issue_due`: Boolean, optional, enable notifications for due issues. Can
+  only be used when level is `custom`. Default to `false`.
+* `merge_merge_request`: Boolean, optional, enable notifications for merged
+  merge requests. Can only be used when level is `custom`. Default to `false`.
+* `merge_when_pipeline_succeeds`: Boolean, optional, enable notifications for
+  merged merge requests when the pipeline succeeds. Can only be used when
+  level is `custom`. Default to `false`.
+* `moved_project`: Boolean, optional, enable notifications for moved projects.
+  Can only be used when level is `custom`. Default to `false`.
+* `new_issue`: Boolean, optional, enable notifications for new issues. Can
+  only be used when level is `custom`. Default to `false`.
+* `new_merge_request`: Boolean, optional, enable notifications for new merge
+  requests. Can only be used when level is `custom`. Default to `false`.
+* `new_note`: Boolean, optional, enable notifications for new notes on merge
+  requests. Can only be used when level is `custom`. Default to `false`.
+* `push_to_merge_request`: Boolean, optional, enable notifications for push to
+  merge request branches. Can only be used when level is `custom`.
+  Default to `false`.
+* `reassign_issue`: Boolean, optional, enable notifications for issue
+  reassignments. Can only be used when level is `custom`. Default to `false`.
+* `reassign_merge_request`: Boolean, optional, enable notifications for merge
+  request reassignments. Can only be used when level is `custom`.
+  Default to `false`.
+* `reopen_issue`: Boolean, optional, enable notifications for reopened issues.
+  Can only be used when level is `custom`. Default to `false`.
+* `reopen_merge_request`: Boolean, optional, enable notifications for reopened
+  merge requests. Can only be used when level is `custom`. Default to `false`.
+* `success_pipeline`: Boolean, optional, Enable notifications for successful
+  pipelines. Can only be used when level is `custom`. Default to `false`.
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(object({
+    close_issue                  = optional(bool, false)
+    close_merge_request          = optional(bool, false)
+    failed_pipeline              = optional(bool, false)
+    fixed_pipeline               = optional(bool, false)
+    issue_due                    = optional(bool, false)
+    merge_merge_request          = optional(bool, false)
+    merge_when_pipeline_succeeds = optional(bool, false)
+    moved_project                = optional(bool, false)
+    new_issue                    = optional(bool, false)
+    new_merge_request            = optional(bool, false)
+    new_note                     = optional(bool, false)
+    push_to_merge_request        = optional(bool, false)
+    reassign_issue               = optional(bool, false)
+    reassign_merge_request       = optional(bool, false)
+    reopen_issue                 = optional(bool, false)
+    reopen_merge_request         = optional(bool, false)
+    success_pipeline             = optional(bool, false)
+  }))
   ```
 
   </div>
