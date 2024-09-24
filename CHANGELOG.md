@@ -1,6 +1,17 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.11.0 (2024-09-24)
+
+### ✨ Minor
+
+  * ✨ Add Repo Leve MR Approval management (!12) by Romain Deville ([`55b7c02`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/55b7c02685e1d729b1ddda398d69db900a3d9dbc))
+  * ✨ Add Repo Level MR approvals management by Romain Deville ([`f4af572`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/f4af572e9f5cea4e2e7e83cde1c3e20d6cc6ee38)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README from tf-docs and add example by Romain Deville ([`d81fdef`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/d81fdef9cc02ecaf90f1c0b415afb9412316ac1d)) 🔏
+
 ## v0.10.0 (2024-09-23)
 
 ### ✨ Minor
@@ -11,6 +22,7 @@
 ### 🔊 Others
 
   * 📝 Update README from tf-docs and add example by Romain Deville ([`e519b0d`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/e519b0db57be9e039f19871c9fc095cdeaa0aa09)) 🔏
+  * 🔖 v0.10.0 (NO-CI) by Python Semantic Release [bot] ([`26d9b26`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/26d9b262dc5b36b7fad89a21e9a7c3550c406329))
 
 ## v0.9.0 (2024-09-23)
 
@@ -101,7 +113,6 @@
 ### ✨ Minor
 
   * ✨ Add repo branches and tags protection (!3) by Romain Deville ([`7987274`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/79872742854a1325bb627e4645cbf8090d4d5f9f))
-  * ✨ Add repo branches and tags protection by Romain Deville ([`0fa5446`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/0fa5446faed082b9b2c618f12c3b660060521ab9)) 🔏
 
 ### 🔊 Others
 
@@ -110,17 +121,6 @@
 
 ## v0.2.0 (2024-09-20)
 
-### ✨ Minor
-
-  * ✨ Add basic project management (!2) by Romain Deville ([`048c529`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/048c5291d7adc9f69d6bfd7acee941169bdc7ef5))
-
 ### 🔊 Others
 
-  * 📝 Update README from tf-docs and add examples by Romain Deville ([`15d0adb`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/15d0adb189734319cc0283e142456d4d1f8dc46e)) 🔏
   * 🔖 v0.2.0 (NO-CI) by Python Semantic Release [bot] ([`77dd1f1`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/77dd1f10a30438468d3827bf3aa9bd4b5f3fc6ea))
-
-## v0.1.0 (2024-09-18)
-
-### 🔊 Others
-
-  * 🔖 v0.1.0 (NO-CI) by Python Semantic Release [bot] ([`cf839fa`](https://framagit.org/rdeville-public/terraform/module-gitlab-repository/-/commit/cf839fa74e7b63d5dfca8e7cf83cfc9ee07962a5))
