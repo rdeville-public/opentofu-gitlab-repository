@@ -47,7 +47,7 @@ variable "settings_allow_merge_on_skipped_pipeline" {
   EOM
 
   nullable = false
-  default  = true
+  default  = false
 }
 
 variable "settings_analytics_access_level" {
@@ -78,8 +78,7 @@ variable "settings_approvals_before_merge" {
   `approval_rule`.
   EOM
 
-  nullable = false
-  default  = 1
+  default = null
 }
 
 variable "settings_archive_on_destroy" {
@@ -218,8 +217,7 @@ variable "settings_ci_restrict_pipeline_cancellation_role" {
   Note: Introduced in GitLab 16.8. Premium and Ultimate only.
   EOM
 
-  nullable = false
-  default  = "no one"
+  default = null
 }
 
 variable "settings_ci_separated_caches" {
@@ -300,8 +298,7 @@ variable "settings_external_authorization_classification_label" {
   type        = string
   description = "The classification label for the project."
 
-  nullable = false
-  default  = "TODO::To Classify"
+  default = null
 }
 
 variable "settings_feature_flags_access_level" {
@@ -313,16 +310,6 @@ variable "settings_feature_flags_access_level" {
 
   nullable = false
   default  = "disabled"
-}
-
-variable "settings_forked_from_project_id" {
-  type        = number
-  description = <<-EOM
-  The id of the project to fork. During create the project is forked and during
-  an update the fork relation is changed.
-  EOM
-
-  default = null
 }
 
 variable "settings_forking_access_level" {
@@ -368,61 +355,6 @@ variable "settings_group_with_project_templates_id" {
 
   Requires `settings_use_custom_template` to be true (enterprise edition).
   EOM
-
-  default = null
-}
-
-variable "settings_import_url" {
-  type        = string
-  description = <<-EOM
-  Git URL to a repository to be imported. Together with `settings_mirror = true`
-  it will setup a Pull Mirror.
-
-  This can also be used together with `settings_forked_from_project_id` to
-  setup a Pull Mirror for a fork.
-
-  The fork takes precedence over the import.
-
-  Make sure to provide the credentials in `settings_import_url_username` and
-  `settings_import_url_password`.
-
-  GitLab never returns the credentials, thus the provider cannot detect
-  configuration drift in the credentials.
-
-  They can also not be imported using terraform import.
-  EOM
-
-  default = null
-}
-
-variable "settings_import_url_password" {
-  type        = string
-  description = <<-EOM
-  The password for the `settings_import_url`. The value of this field is used
-  to construct a valid `settings_import_url` and is only related to the provider.
-
-  This field cannot be imported using terraform import.
-  EOM
-
-  sensitive = true
-  default   = null
-}
-
-variable "settings_import_url_username" {
-  type        = string
-  description = <<-EOM
-  The username for the `settings_import_url`. The value of this field is used to
-  construct a valid `settings_import_url` and is only related to the provider.
-
-  This field cannot be imported using terraform import.
-  EOM
-
-  default = null
-}
-
-variable "settings_mirror" {
-  type        = bool
-  description = "Enable project pull mirror."
 
   default = null
 }
@@ -556,22 +488,6 @@ variable "settings_merge_trains_enabled" {
   default  = false
 }
 
-variable "settings_mirror_overwrites_diverged_branches" {
-  type        = bool
-  description = "Enable overwrite diverged branches for a mirrored project."
-
-  nullable = false
-  default  = false
-}
-
-variable "settings_mirror_trigger_builds" {
-  type        = bool
-  description = "Enable trigger builds on pushes for a mirrored project."
-
-  nullable = false
-  default  = false
-}
-
 variable "settings_monitor_access_level" {
   type        = string
   description = <<-EOM
@@ -580,18 +496,6 @@ variable "settings_monitor_access_level" {
 
   nullable = false
   default  = "disabled"
-}
-
-variable "settings_mr_default_target_self" {
-  type        = bool
-  description = <<-EOM
-  For forked projects, target merge requests to this project.
-
-  If `false`, the target will be the upstream project.
-  EOM
-
-  nullable = false
-  default  = false
 }
 
 variable "settings_only_allow_merge_if_all_discussions_are_resolved" {
@@ -612,16 +516,6 @@ variable "settings_only_allow_merge_if_pipeline_succeeds" {
 
   nullable = false
   default  = true
-}
-
-variable "settings_only_mirror_protected_branches" {
-  type        = bool
-  description = <<-EOM
-  Enable only mirror protected branches for a mirrored project.
-  EOM
-
-  nullable = false
-  default  = false
 }
 
 variable "settings_packages_enabled" {
@@ -714,8 +608,7 @@ variable "settings_requirements_access_level" {
   Set the requirements access level. Valid values are `disabled`, `private`, `enabled`.
   EOM
 
-  nullable = false
-  default  = "disabled"
+  default = null
 }
 
 variable "settings_resolve_outdated_diff_discussions" {
@@ -1038,7 +931,7 @@ variable "access_tokens" {
   # Key is access token name
   type = map(object({
     scopes       = set(string)
-    expires_at   = string
+    expires_at   = optional(string)
     access_level = optional(string, "no one")
     rotation_configuration = optional(object({
       expiration_days    = number
@@ -1059,7 +952,7 @@ variable "access_tokens" {
   access tokens, and if need, set it as CI variable. Object support following
   attributes:
 
-  * `expires_at`: Set of string, the scopes of the project access token.
+  * `scopes`: Set of string, the scopes of the project access token.
     Valid values are: `api`, `read_api`, `read_registry`, `write_registry`,
     `read_repository`, `write_repository`, `create_runner`, `manage_runner`,
     `ai_features`, `k8s_proxy`, `read_observability`, `write_observability`.
@@ -1270,11 +1163,12 @@ variable "custom_attributes" {
 # ------------------------------------------------------------------------
 variable "level_mr_approval" {
   type = object({
+    enabled                                        = bool
     disable_overriding_approvers_per_merge_request = optional(bool, false)
     merge_requests_author_approval                 = optional(bool, false)
     merge_requests_disable_committers_approval     = optional(bool, true)
     require_password_to_approve                    = optional(bool, false)
-    reset_approvals_on_push                        = optional(bool, true)
+    reset_approvals_on_push                        = optional(bool, false)
     selective_code_owner_removals                  = optional(bool, true)
   })
   description = <<-EOM
@@ -1297,10 +1191,13 @@ variable "level_mr_approval" {
     Code Owners if their files changed. Can be enabled only if
    `reset_approvals_on_push` is disabled. Default to `true`.
 
+  NOTE: This resource requires a GitLab Enterprise instance.
   EOM
 
   nullable = false
-  default  = {}
+  default = {
+    enabled = false
+  }
 }
 
 # Repository level notifications variables

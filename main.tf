@@ -31,15 +31,10 @@ resource "gitlab_project" "this" {
   environments_access_level                        = var.settings_environments_access_level
   external_authorization_classification_label      = var.settings_external_authorization_classification_label
   feature_flags_access_level                       = var.settings_feature_flags_access_level
-  forked_from_project_id                           = var.settings_forked_from_project_id
   forking_access_level                             = var.settings_forking_access_level
   group_runners_enabled                            = var.settings_group_runners_enabled
   use_custom_template                              = var.settings_use_custom_template
   group_with_project_templates_id                  = var.settings_group_with_project_templates_id
-  import_url                                       = var.settings_import_url
-  import_url_password                              = var.settings_import_url_password
-  import_url_username                              = var.settings_import_url_username
-  mirror                                           = var.settings_mirror
   infrastructure_access_level                      = var.settings_infrastructure_access_level
   initialize_with_readme                           = var.settings_initialize_with_readme
   issues_access_level                              = var.settings_issues_access_level
@@ -52,13 +47,9 @@ resource "gitlab_project" "this" {
   merge_requests_access_level                      = var.settings_merge_requests_access_level
   merge_requests_template                          = var.settings_merge_requests_template
   merge_trains_enabled                             = var.settings_merge_trains_enabled
-  mirror_overwrites_diverged_branches              = var.settings_mirror_overwrites_diverged_branches
-  mirror_trigger_builds                            = var.settings_mirror_trigger_builds
   monitor_access_level                             = var.settings_monitor_access_level
-  mr_default_target_self                           = var.settings_mr_default_target_self
   only_allow_merge_if_all_discussions_are_resolved = var.settings_only_allow_merge_if_all_discussions_are_resolved
   only_allow_merge_if_pipeline_succeeds            = var.settings_only_allow_merge_if_pipeline_succeeds
-  only_mirror_protected_branches                   = var.settings_only_mirror_protected_branches
   packages_enabled                                 = var.settings_packages_enabled
   pages_access_level                               = var.settings_pages_access_level
   printing_merge_request_link_enabled              = var.settings_printing_merge_request_link_enabled
@@ -98,7 +89,7 @@ resource "gitlab_project" "this" {
   }
 
   dynamic "timeouts" {
-    for_each = var.settings_timeouts
+    for_each = var.settings_timeouts != null ? var.settings_timeouts : {}
 
     content {
       create = timeouts.value.create
@@ -211,16 +202,19 @@ resource "gitlab_project_label" "this" {
 
 # Manage repo access tokens
 resource "gitlab_project_access_token" "this" {
-  for_each = var.access_tokens
+  # Variables are not deployed if project is archived
+  for_each = var.settings_archived == false ? var.access_tokens : {}
 
-  project    = gitlab_project.this.id
-  name       = each.key
-  expires_at = each.value.expires_at
-  scopes     = each.value.scopes
+  project                = gitlab_project.this.id
+  name                   = each.key
+  expires_at             = each.value.expires_at
+  scopes                 = each.value.scopes
+  rotation_configuration = each.value.rotation_configuration
 }
 
 # Manage repo variables accessible for CI
 resource "gitlab_project_variable" "this" {
+  # Variables are not deployed if project is archived, see locals.tf
   for_each = local.variables
 
   project     = gitlab_project.this.id
@@ -293,9 +287,10 @@ resource "gitlab_project_custom_attribute" "this" {
 
 # Manage repo mr level approval
 resource "gitlab_project_level_mr_approvals" "this" {
-  for_each = var.level_mr_approval
+  count = var.level_mr_approval.enabled ? 1 : 0
 
-  project                                        = gitlab_project.this.id
+  project = gitlab_project.this.id
+
   disable_overriding_approvers_per_merge_request = var.level_mr_approval.disable_overriding_approvers_per_merge_request
   merge_requests_author_approval                 = var.level_mr_approval.merge_requests_author_approval
   merge_requests_disable_committers_approval     = var.level_mr_approval.merge_requests_disable_committers_approval
