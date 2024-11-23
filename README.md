@@ -547,36 +547,36 @@ module "gitlab_repo" {
 
 * [opentofu](https://opentofu.org/docs/):
   `>= 1.8, < 2.0`
-* [gitlab](https://registry.terraform.io/providers/gitlabhq/gitlab/):
+* [gitlab](https://registry.terraform.io/providers/opentofu/gitlab/):
   `~>17.0`
 
 ### Resources
 
-* [resource.gitlab_branch_protection.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/branch_protection)
+* [resource.gitlab_branch_protection.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/branch_protection)
   > Manage gitlab repository branch protection rules
-* [resource.gitlab_project.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project)
+* [resource.gitlab_project.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project)
   > Manage gitlab repository
-* [resource.gitlab_project_access_token.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_access_token)
+* [resource.gitlab_project_access_token.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_access_token)
   > Manage repo access tokens
-* [resource.gitlab_project_badge.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_badge)
+* [resource.gitlab_project_badge.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_badge)
   > Manage repo badges
-* [resource.gitlab_project_custom_attribute.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_custom_attribute)
+* [resource.gitlab_project_custom_attribute.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_custom_attribute)
   > Manage repo custom attributes
-* [resource.gitlab_project_hook.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_hook)
+* [resource.gitlab_project_hook.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_hook)
   > Manage repo hooks
-* [resource.gitlab_project_label.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_label)
+* [resource.gitlab_project_label.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_label)
   > Manage repo labels for issues and merge requests
-* [resource.gitlab_project_level_mr_approvals.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_level_mr_approvals)
+* [resource.gitlab_project_level_mr_approvals.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_level_mr_approvals)
   > Manage repo mr level approval
-* [resource.gitlab_project_level_notifications.custom](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_level_notifications)
+* [resource.gitlab_project_level_notifications.custom](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_level_notifications)
   >
-* [resource.gitlab_project_level_notifications.preset](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_level_notifications)
+* [resource.gitlab_project_level_notifications.preset](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_level_notifications)
   > Manage repo notification levels
-* [resource.gitlab_project_mirror.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_mirror)
+* [resource.gitlab_project_mirror.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_mirror)
   > Manage repo mirroring to another git server
-* [resource.gitlab_project_variable.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_variable)
+* [resource.gitlab_project_variable.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_variable)
   > Manage repo variables accessible for CI
-* [resource.gitlab_tag_protection.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/tag_protection)
+* [resource.gitlab_tag_protection.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/tag_protection)
   > Manage gitlab repository branch protection rules
 
 <!-- markdownlint-capture -->
@@ -647,15 +647,10 @@ string
 * [settings_environments_access_level](#settings_environments_access_level)
 * [settings_external_authorization_classification_label](#settings_external_authorization_classification_label)
 * [settings_feature_flags_access_level](#settings_feature_flags_access_level)
-* [settings_forked_from_project_id](#settings_forked_from_project_id)
 * [settings_forking_access_level](#settings_forking_access_level)
 * [settings_group_runners_enabled](#settings_group_runners_enabled)
 * [settings_use_custom_template](#settings_use_custom_template)
 * [settings_group_with_project_templates_id](#settings_group_with_project_templates_id)
-* [settings_import_url](#settings_import_url)
-* [settings_import_url_password](#settings_import_url_password)
-* [settings_import_url_username](#settings_import_url_username)
-* [settings_mirror](#settings_mirror)
 * [settings_infrastructure_access_level](#settings_infrastructure_access_level)
 * [settings_initialize_with_readme](#settings_initialize_with_readme)
 * [settings_issues_access_level](#settings_issues_access_level)
@@ -668,13 +663,9 @@ string
 * [settings_merge_requests_access_level](#settings_merge_requests_access_level)
 * [settings_merge_requests_template](#settings_merge_requests_template)
 * [settings_merge_trains_enabled](#settings_merge_trains_enabled)
-* [settings_mirror_overwrites_diverged_branches](#settings_mirror_overwrites_diverged_branches)
-* [settings_mirror_trigger_builds](#settings_mirror_trigger_builds)
 * [settings_monitor_access_level](#settings_monitor_access_level)
-* [settings_mr_default_target_self](#settings_mr_default_target_self)
 * [settings_only_allow_merge_if_all_discussions_are_resolved](#settings_only_allow_merge_if_all_discussions_are_resolved)
 * [settings_only_allow_merge_if_pipeline_succeeds](#settings_only_allow_merge_if_pipeline_succeeds)
-* [settings_only_mirror_protected_branches](#settings_only_mirror_protected_branches)
 * [settings_packages_enabled](#settings_packages_enabled)
 * [settings_pages_access_level](#settings_pages_access_level)
 * [settings_printing_merge_request_link_enabled](#settings_printing_merge_request_link_enabled)
@@ -809,7 +800,7 @@ finished with success.
   <p style="border-bottom: 1px solid #333333;">Default</p>
 
   ```hcl
-  true
+  false
   ```
 
   </div>
@@ -871,7 +862,7 @@ So for the moment, use this variable until deprecated in favor of variable
   <p style="border-bottom: 1px solid #333333;">Default</p>
 
   ```hcl
-  1
+  null
   ```
 
   </div>
@@ -1227,7 +1218,7 @@ Note: Introduced in GitLab 16.8. Premium and Ultimate only.
   <p style="border-bottom: 1px solid #333333;">Default</p>
 
   ```hcl
-  no one
+  null
   ```
 
   </div>
@@ -1400,7 +1391,7 @@ The classification label for the project.
   <p style="border-bottom: 1px solid #333333;">Default</p>
 
   ```hcl
-  TODO::To Classify
+  null
   ```
 
   </div>
@@ -1427,32 +1418,6 @@ Set the feature flags access level. Valid values are `disabled`, `private`,
 
   ```hcl
   disabled
-  ```
-
-  </div>
-</details>
-
-##### `settings_forked_from_project_id`
-
-The id of the project to fork. During create the project is forked and during
-an update the fork relation is changed.
-
-<details style="width: 100%;display: inline-block">
-  <summary>Type & Default</summary>
-  <div style="height: 1em"></div>
-  <div style="width:64%; float:left;">
-  <p style="border-bottom: 1px solid #333333;">Type</p>
-
-  ```hcl
-  number
-  ```
-
-  </div>
-  <div style="width:34%;float:right;">
-  <p style="border-bottom: 1px solid #333333;">Default</p>
-
-  ```hcl
-  null
   ```
 
   </div>
@@ -1554,125 +1519,6 @@ Requires `settings_use_custom_template` to be true (enterprise edition).
 
   ```hcl
   number
-  ```
-
-  </div>
-  <div style="width:34%;float:right;">
-  <p style="border-bottom: 1px solid #333333;">Default</p>
-
-  ```hcl
-  null
-  ```
-
-  </div>
-</details>
-
-##### `settings_import_url`
-
-Git URL to a repository to be imported. Together with `settings_mirror = true`
-it will setup a Pull Mirror.
-
-This can also be used together with `settings_forked_from_project_id` to
-setup a Pull Mirror for a fork.
-
-The fork takes precedence over the import.
-
-Make sure to provide the credentials in `settings_import_url_username` and
-`settings_import_url_password`.
-
-GitLab never returns the credentials, thus the provider cannot detect
-configuration drift in the credentials.
-
-They can also not be imported using terraform import.
-
-<details style="width: 100%;display: inline-block">
-  <summary>Type & Default</summary>
-  <div style="height: 1em"></div>
-  <div style="width:64%; float:left;">
-  <p style="border-bottom: 1px solid #333333;">Type</p>
-
-  ```hcl
-  string
-  ```
-
-  </div>
-  <div style="width:34%;float:right;">
-  <p style="border-bottom: 1px solid #333333;">Default</p>
-
-  ```hcl
-  null
-  ```
-
-  </div>
-</details>
-
-##### `settings_import_url_password`
-
-The password for the `settings_import_url`. The value of this field is used
-to construct a valid `settings_import_url` and is only related to the provider.
-
-This field cannot be imported using terraform import.
-
-<details style="width: 100%;display: inline-block">
-  <summary>Type & Default</summary>
-  <div style="height: 1em"></div>
-  <div style="width:64%; float:left;">
-  <p style="border-bottom: 1px solid #333333;">Type</p>
-
-  ```hcl
-  string
-  ```
-
-  </div>
-  <div style="width:34%;float:right;">
-  <p style="border-bottom: 1px solid #333333;">Default</p>
-
-  ```hcl
-  null
-  ```
-
-  </div>
-</details>
-
-##### `settings_import_url_username`
-
-The username for the `settings_import_url`. The value of this field is used to
-construct a valid `settings_import_url` and is only related to the provider.
-
-This field cannot be imported using terraform import.
-
-<details style="width: 100%;display: inline-block">
-  <summary>Type & Default</summary>
-  <div style="height: 1em"></div>
-  <div style="width:64%; float:left;">
-  <p style="border-bottom: 1px solid #333333;">Type</p>
-
-  ```hcl
-  string
-  ```
-
-  </div>
-  <div style="width:34%;float:right;">
-  <p style="border-bottom: 1px solid #333333;">Default</p>
-
-  ```hcl
-  null
-  ```
-
-  </div>
-</details>
-
-##### `settings_mirror`
-
-Enable project pull mirror.
-<details style="width: 100%;display: inline-block">
-  <summary>Type & Default</summary>
-  <div style="height: 1em"></div>
-  <div style="width:64%; float:left;">
-  <p style="border-bottom: 1px solid #333333;">Type</p>
-
-  ```hcl
-  bool
   ```
 
   </div>
@@ -2000,54 +1846,6 @@ Requires `settings_merge_pipelines_enabled` to be set to `true` to take effect.
   </div>
 </details>
 
-##### `settings_mirror_overwrites_diverged_branches`
-
-Enable overwrite diverged branches for a mirrored project.
-<details style="width: 100%;display: inline-block">
-  <summary>Type & Default</summary>
-  <div style="height: 1em"></div>
-  <div style="width:64%; float:left;">
-  <p style="border-bottom: 1px solid #333333;">Type</p>
-
-  ```hcl
-  bool
-  ```
-
-  </div>
-  <div style="width:34%;float:right;">
-  <p style="border-bottom: 1px solid #333333;">Default</p>
-
-  ```hcl
-  false
-  ```
-
-  </div>
-</details>
-
-##### `settings_mirror_trigger_builds`
-
-Enable trigger builds on pushes for a mirrored project.
-<details style="width: 100%;display: inline-block">
-  <summary>Type & Default</summary>
-  <div style="height: 1em"></div>
-  <div style="width:64%; float:left;">
-  <p style="border-bottom: 1px solid #333333;">Type</p>
-
-  ```hcl
-  bool
-  ```
-
-  </div>
-  <div style="width:34%;float:right;">
-  <p style="border-bottom: 1px solid #333333;">Default</p>
-
-  ```hcl
-  false
-  ```
-
-  </div>
-</details>
-
 ##### `settings_monitor_access_level`
 
 Set the monitor access level. Valid values are `disabled`, `private`, `enabled`.
@@ -2068,33 +1866,6 @@ Set the monitor access level. Valid values are `disabled`, `private`, `enabled`.
 
   ```hcl
   disabled
-  ```
-
-  </div>
-</details>
-
-##### `settings_mr_default_target_self`
-
-For forked projects, target merge requests to this project.
-
-If `false`, the target will be the upstream project.
-
-<details style="width: 100%;display: inline-block">
-  <summary>Type & Default</summary>
-  <div style="height: 1em"></div>
-  <div style="width:64%; float:left;">
-  <p style="border-bottom: 1px solid #333333;">Type</p>
-
-  ```hcl
-  bool
-  ```
-
-  </div>
-  <div style="width:34%;float:right;">
-  <p style="border-bottom: 1px solid #333333;">Default</p>
-
-  ```hcl
-  false
   ```
 
   </div>
@@ -2145,31 +1916,6 @@ Set to `false` if you allow merges if a pipeline fails.
 
   ```hcl
   true
-  ```
-
-  </div>
-</details>
-
-##### `settings_only_mirror_protected_branches`
-
-Enable only mirror protected branches for a mirrored project.
-
-<details style="width: 100%;display: inline-block">
-  <summary>Type & Default</summary>
-  <div style="height: 1em"></div>
-  <div style="width:64%; float:left;">
-  <p style="border-bottom: 1px solid #333333;">Type</p>
-
-  ```hcl
-  bool
-  ```
-
-  </div>
-  <div style="width:34%;float:right;">
-  <p style="border-bottom: 1px solid #333333;">Default</p>
-
-  ```hcl
-  false
   ```
 
   </div>
@@ -2417,7 +2163,7 @@ Set the requirements access level. Valid values are `disabled`, `private`, `enab
   <p style="border-bottom: 1px solid #333333;">Default</p>
 
   ```hcl
-  disabled
+  null
   ```
 
   </div>
@@ -3010,7 +2756,7 @@ Map of object, where key is the name of the access token. Object describe
 access tokens, and if need, set it as CI variable. Object support following
 attributes:
 
-* `expires_at`: Set of string, the scopes of the project access token.
+* `scopes`: Set of string, the scopes of the project access token.
   Valid values are: `api`, `read_api`, `read_registry`, `write_registry`,
   `read_repository`, `write_repository`, `create_runner`, `manage_runner`,
   `ai_features`, `k8s_proxy`, `read_observability`, `write_observability`.
@@ -3056,7 +2802,7 @@ attributes:
   ```hcl
   map(object({
     scopes       = set(string)
-    expires_at   = string
+    expires_at   = optional(string)
     access_level = optional(string, "no one")
     rotation_configuration = optional(object({
       expiration_days    = number
@@ -3330,6 +3076,7 @@ following attributes:
   Code Owners if their files changed. Can be enabled only if
  `reset_approvals_on_push` is disabled. Default to `true`.
 
+NOTE: This resource requires a GitLab Enterprise instance.
 
 <details style="width: 100%;display: inline-block">
   <summary>Type & Default</summary>
@@ -3339,11 +3086,12 @@ following attributes:
 
   ```hcl
   object({
+    enabled                                        = bool
     disable_overriding_approvers_per_merge_request = optional(bool, false)
     merge_requests_author_approval                 = optional(bool, false)
     merge_requests_disable_committers_approval     = optional(bool, true)
     require_password_to_approve                    = optional(bool, false)
-    reset_approvals_on_push                        = optional(bool, true)
+    reset_approvals_on_push                        = optional(bool, false)
     selective_code_owner_removals                  = optional(bool, true)
   })
   ```
@@ -3353,7 +3101,7 @@ following attributes:
   <p style="border-bottom: 1px solid #333333;">Default</p>
 
   ```hcl
-  {}
+  map[enabled:false]
   ```
 
   </div>
@@ -3472,14 +3220,22 @@ setting custom level notification. Object support following attributes:
 
 ### Outputs
 
-* `repository_id`:
-  ID of the deployed repository
-* `repository_clone_ssh`:
+* `id`:
+  The repository ID
+* `name`:
+  The repository name.
+* `path`:
+  The repository path.
+* `path_with_namespace`:
+  The repository path_with_namespace.
+* `ssh_url_to_repo`:
   SSH Url to clone the deployed repository
-* `repository_clone_https`:
+* `http_url_to_repo`:
   SSH Url to clone the deployed repository
-* `repository_web_url`:
+* `web_url`:
   Web Url to the deployed repository
+* `access_tokens`:
+  Access tokens associated to the repo
 
 </details>
 

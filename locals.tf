@@ -1,5 +1,6 @@
 locals {
-  variables = merge(
+  # Variables are not deployed if project is archived, see locals.tf
+  variables = var.settings_archived == true ? {} : merge(
     var.variables,
     merge([
       for name, token in var.access_tokens : token.ci_variable != null ? {
