@@ -548,36 +548,36 @@ module "gitlab_repo" {
 
 * [opentofu](https://opentofu.org/docs/):
   `>= 1.8, < 2.0`
-* [gitlab](https://search.opentofu.org/provider/opentofu/gitlab/):
+* [gitlab](https://search.opentofu.org/provider/gitlabhq/gitlab/):
   `~>17.0`
 
 ### Resources
 
-* [resource.gitlab_branch_protection.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/branch_protection)
+* [resource.gitlab_branch_protection.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/branch_protection)
   > Manage gitlab repository branch protection rules
-* [resource.gitlab_project.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project)
+* [resource.gitlab_project.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project)
   > Manage gitlab repository
-* [resource.gitlab_project_access_token.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_access_token)
+* [resource.gitlab_project_access_token.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_access_token)
   > Manage repo access tokens
-* [resource.gitlab_project_badge.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_badge)
+* [resource.gitlab_project_badge.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_badge)
   > Manage repo badges
-* [resource.gitlab_project_custom_attribute.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_custom_attribute)
+* [resource.gitlab_project_custom_attribute.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_custom_attribute)
   > Manage repo custom attributes
-* [resource.gitlab_project_hook.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_hook)
+* [resource.gitlab_project_hook.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_hook)
   > Manage repo hooks
-* [resource.gitlab_project_label.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_label)
+* [resource.gitlab_project_label.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_label)
   > Manage repo labels for issues and merge requests
-* [resource.gitlab_project_level_mr_approvals.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_level_mr_approvals)
+* [resource.gitlab_project_level_mr_approvals.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_level_mr_approvals)
   > Manage repo mr level approval
-* [resource.gitlab_project_level_notifications.custom](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_level_notifications)
+* [resource.gitlab_project_level_notifications.custom](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_level_notifications)
   >
-* [resource.gitlab_project_level_notifications.preset](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_level_notifications)
+* [resource.gitlab_project_level_notifications.preset](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_level_notifications)
   > Manage repo notification levels
-* [resource.gitlab_project_mirror.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_mirror)
+* [resource.gitlab_project_mirror.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_mirror)
   > Manage repo mirroring to another git server
-* [resource.gitlab_project_variable.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/project_variable)
+* [resource.gitlab_project_variable.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_variable)
   > Manage repo variables accessible for CI
-* [resource.gitlab_tag_protection.this](https://registry.terraform.io/providers/opentofu/gitlab/latest/docs/resources/tag_protection)
+* [resource.gitlab_tag_protection.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/tag_protection)
   > Manage gitlab repository branch protection rules
 
 <!-- markdownlint-capture -->
