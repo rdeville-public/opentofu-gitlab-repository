@@ -1,6 +1,19 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.12.3 (2025-03-01)
+
+### 🩹 Patch
+
+  * ⬆️(dgs): Update files from DGS templates due to config changes by Romain Deville ([`44bf26f`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/44bf26f79274103484a04719e06c7ccd47d1cb00)) 🔏
+  * ⬆️ Upgrade devbox.lock by Romain Deville ([`af1dbed`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/af1dbed40207bee2a34c906fcdb203581ddf7438)) 🔏
+  * 🔧(dgs): Add enforcement on .gitlab-ci files by Romain Deville ([`4a00ba3`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/4a00ba30bb87b9ab34b37ff7db44a8ab1d7fa848)) 🔏
+
+### 🔊 Others
+
+  * 🔨(devbox): Update chmod for devbox scripts (!18) by Romain Deville ([`2a7c6e7`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/2a7c6e7697d51ea1934e87666e0970bc56da8ad1))
+  * 🔨(devbox): Update chmod for devbox scripts by Romain Deville ([`32a7e07`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/32a7e0789a49b2e7cc3770436ae86211891f61c4)) 🔏
+
 ## v0.12.2 (2025-02-08)
 
 ### 🩹 Patch
