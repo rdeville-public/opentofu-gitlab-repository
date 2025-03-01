@@ -13,6 +13,10 @@ dotgit:
       only:
         - .pre-commit-config.yaml
         - gitlab-ci.yaml
+    enforce:
+      method: only
+      only:
+        - gitlab-ci.yaml
 
 # Repos description and template usage configuration
 # ------------------------------------------------------------------------------
