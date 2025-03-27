@@ -1282,3 +1282,22 @@ variable "custom_level_notifications" {
   nullable = false
   default  = {}
 }
+
+# Repository deloy SSH keys
+# ------------------------------------------------------------------------
+variable "deploy_keys" {
+  type = map(object({
+    key      = string
+    can_push = optional(bool, false)
+  }))
+  description = <<-EOM
+  Map of object, where the key is the title of the key and object support
+  following attributes:
+  * `key`: String, content of the public SSH key allow to deploy git repository.
+  * `can_push`: Boolean, allow this deploy key to be used to push changes to the
+    project.
+  EOM
+
+  nullable = false
+  default  = {}
+}
