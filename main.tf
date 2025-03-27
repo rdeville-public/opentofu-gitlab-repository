@@ -330,3 +330,22 @@ resource "gitlab_project_level_notifications" "custom" {
   reopen_merge_request         = each.value.reopen_merge_request
   success_pipeline             = each.value.success_pipeline
 }
+
+resource "gitlab_deploy_key" "this" {
+  for_each = var.deploy_keys
+
+  project  = gitlab_project.this.id
+  title    = each.key
+  key      = each.value.key
+  can_push = each.value.can_push
+}
+
+resource "gitlab_deploy_token" "this" {
+  for_each = var.deploy_tokens
+
+  project    = gitlab_project.this.id
+  name       = each.key
+  scopes     = each.value.key
+  expires_at = each.value.expires_at
+  username   = each.value.username
+}

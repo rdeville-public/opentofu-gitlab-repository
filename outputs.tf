@@ -37,3 +37,8 @@ output "access_tokens" {
   value       = gitlab_project_access_token.this
   description = "Access tokens associated to the repo"
 }
+
+output "deploy_token" {
+  value       = gitlab_deploy_token.this
+  description = "Deploy tokens associated to the repo"
+}

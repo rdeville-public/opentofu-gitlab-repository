@@ -1282,3 +1282,46 @@ variable "custom_level_notifications" {
   nullable = false
   default  = {}
 }
+
+# Repository deloy SSH keys
+# ------------------------------------------------------------------------
+variable "deploy_keys" {
+  type = map(object({
+    key      = string
+    can_push = optional(bool, false)
+  }))
+  description = <<-EOM
+  Map of object, where the key is the title of the key and object support
+  following attributes:
+  * `key`: String, content of the public SSH key allow to deploy git repository.
+  * `can_push`: Boolean, allow this deploy key to be used to push changes to the
+    project.
+  EOM
+
+  nullable = false
+  default  = {}
+}
+
+# Repository deloy token
+# ------------------------------------------------------------------------
+variable "deploy_tokens" {
+  type = map(object({
+    scopes     = set(string)
+    expires_at = optional(string, null)
+    username   = optional(string, null)
+  }))
+  description = <<-EOM
+  Map of object, where the key is the title name of the token and object support
+  following attributes:
+  * `scopes`: Set of String, scope access for the token, valid values:
+    read_repository, read_registry, read_package_registry, write_registry,
+    write_package_registry.
+  * `expires_at`: String, optional, time the token will expire it, RFC3339
+    format. Will not expire per default.
+  * `username`: String, optional, a username for the deploy token. Default is
+    gitlab+deploy-token-{n}.
+  EOM
+
+  nullable = false
+  default  = {}
+}
