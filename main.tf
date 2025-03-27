@@ -339,3 +339,13 @@ resource "gitlab_deploy_key" "this" {
   key      = each.value.key
   can_push = each.value.can_push
 }
+
+resource "gitlab_deploy_token" "this" {
+  for_each = var.deploy_tokens
+
+  project    = gitlab_project.this.id
+  name       = each.key
+  scopes     = each.value.key
+  expires_at = each.value.expires_at
+  username   = each.value.username
+}
