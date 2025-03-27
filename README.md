@@ -492,7 +492,7 @@ module "gitlab_repo" {
 }
 ```
 
-### Manage Repository Level MR Approvals
+### Manage Repository Notifications Levels
 
 ```hcl
 module "gitlab_repo" {
