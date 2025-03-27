@@ -550,6 +550,27 @@ module "gitlab_repo" {
 }
 ```
 
+### Manage Repository Deploy Key
+
+```hcl
+module "gitlab_repo" {
+  source = "git::https://framagit.org/rdeville-public/terraform/module-gitlab-repository.git"
+
+  # Required Variables
+  name        = "My Awesome Project"
+  description = "The best project of all time"
+
+  # Example value
+  deploy_key = {
+    my-key-name = {
+      scopes     = ["read_repository"]
+      expires_at = "2100-12-31-T00:00:00Z"
+      username   = "example-username"
+    }
+  }
+}
+```
+
 <!-- BEGIN TF-DOCS -->
 ## ⚙️ Module Content
 
@@ -576,6 +597,8 @@ module "gitlab_repo" {
 * [resource.gitlab_branch_protection.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/branch_protection)
   > Manage gitlab repository branch protection rules
 * [resource.gitlab_deploy_key.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/deploy_key)
+  >
+* [resource.gitlab_deploy_token.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/deploy_token)
   >
 * [resource.gitlab_project.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project)
   > Manage gitlab repository
@@ -727,6 +750,7 @@ string
 * [preset_level_notifications](#preset_level_notifications)
 * [custom_level_notifications](#custom_level_notifications)
 * [deploy_keys](#deploy_keys)
+* [deploy_tokens](#deploy_tokens)
 
 
 ##### `settings_path`
@@ -3272,6 +3296,43 @@ following attributes:
 
   </div>
 </details>
+
+##### `deploy_tokens`
+
+Map of object, where the key is the title name of the token and object support
+following attributes:
+* `scopes`: Set of String, scope access for the token, valid values:
+  read_repository, read_registry, read_package_registry, write_registry,
+  write_package_registry.
+* `expires_at`: String, optional, time the token will expire it, RFC3339
+  format. Will not expire per default.
+* `username`: String, optional, a username for the deploy token. Default is
+  gitlab+deploy-token-{n}.
+
+<details style="width: 100%;display: inline-block">
+  <summary>Type & Default</summary>
+  <div style="height: 1em"></div>
+  <div style="width:64%; float:left;">
+  <p style="border-bottom: 1px solid #333333;">Type</p>
+
+  ```hcl
+  map(object({
+    scopes     = set(string)
+    expires_at = optional(string, null)
+    username   = optional(string, null)
+  }))
+  ```
+
+  </div>
+  <div style="width:34%;float:right;">
+  <p style="border-bottom: 1px solid #333333;">Default</p>
+
+  ```hcl
+  {}
+  ```
+
+  </div>
+</details>
 <!-- markdownlint-restore -->
 
 ### Outputs
@@ -3292,6 +3353,8 @@ following attributes:
   Web Url to the deployed repository
 * `access_tokens`:
   Access tokens associated to the repo
+* `deploy_token`:
+  Deploy tokens associated to the repo
 
 </details>
 
