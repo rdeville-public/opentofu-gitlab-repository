@@ -1,6 +1,13 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.12.4 (2025-03-27)
+
+### 🩹 Patch
+
+  * ⬆️ Update templated files from dotgit-sync (!19) by Romain Deville ([`68a1f2b`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/68a1f2b23b7f9a5f9f510fbd6316e183504a932c))
+  * ⬆️ Update templated files from dotgit-sync by Dotgit Sync [bot] ([`59c8bec`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/59c8becfa10e10b82bcf28f1bcd4602bce231d33)) 🔏
+
 ## v0.12.3 (2025-03-01)
 
 ### 🩹 Patch
