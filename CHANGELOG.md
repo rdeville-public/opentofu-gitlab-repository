@@ -1,6 +1,23 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.13.0 (2025-03-27)
+
+### ✨ Minor
+
+  * ✨ Add Project Deploy Key and SSH Key support (!20) by Romain Deville ([`28ef483`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/28ef483ec768440ce6aff6ed11d700204dade300))
+  * ✨ Add management of project deploy key by Romain Deville ([`7661a6b`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/7661a6b1c3d78af7914671fa66a81e0341744abc)) 🔏
+  * ✨ Add management of project deploy SSH key by Romain Deville ([`2c7867c`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/2c7867c6efe9da8ededf6cf3322e775f8f4f6e74)) 🔏
+
+### 🩹 Patch
+
+  * ✏️ Fix wrong title in README by Romain Deville ([`4122ad1`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/4122ad1329555666ea8aaddb09aad5e04b47474a)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update documentation with Project Deploy Key support by Romain Deville ([`6a75f62`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/6a75f62fa0d99c60f54efad0e9fa42d299ca2c3d)) 🔏
+  * 📝 Update documentation with new Deploy SSH Key support by Romain Deville ([`b104c46`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/b104c463456ce08c6550bda440d8adcbf8fcac1d)) 🔏
+
 ## v0.12.4 (2025-03-27)
 
 ### 🩹 Patch
