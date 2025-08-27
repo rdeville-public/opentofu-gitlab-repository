@@ -933,6 +933,7 @@ variable "access_tokens" {
     scopes       = set(string)
     expires_at   = optional(string)
     access_level = optional(string, "no one")
+    description  = string
     rotation_configuration = optional(object({
       expiration_days    = number
       rotate_before_days = number

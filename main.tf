@@ -208,6 +208,8 @@ resource "gitlab_project_access_token" "this" {
   project                = gitlab_project.this.id
   name                   = each.key
   expires_at             = each.value.expires_at
+  description            = each.value.description
+  access_level           = each.value.access_level
   scopes                 = each.value.scopes
   rotation_configuration = each.value.rotation_configuration
 }
