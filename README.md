@@ -590,7 +590,7 @@ module "gitlab_repo" {
 * [opentofu](https://opentofu.org/docs/):
   `>= 1.8, < 2.0`
 * [gitlab](https://search.opentofu.org/provider/gitlabhq/gitlab/):
-  `~>17.0`
+  `~>18.0`
 
 ### Resources
 
@@ -2852,6 +2852,7 @@ attributes:
     scopes       = set(string)
     expires_at   = optional(string)
     access_level = optional(string, "no one")
+    description  = string
     rotation_configuration = optional(object({
       expiration_days    = number
       rotate_before_days = number
