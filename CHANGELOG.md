@@ -1,6 +1,18 @@
 <!-- markdownlint-disable-file -->
 # CHANGELOG
 
+## v0.13.1 (2025-08-27)
+
+### 🩹 Patch
+
+  * ⚡️ Add access_level and description support to access_tokens and bump provider constraint (!21) by Romain Deville ([`1d6e534`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/1d6e5345a5df454493c28166e9bcbaa54231b74b))
+  * ⚡️ Add access_level and description support to access_tokens by Romain Deville ([`b26ea92`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/b26ea927b9b5bf593aaf3f6eb5634a322f3d41a4)) 🔏
+  * ⬆️ Bump gitlabhq/gitlab version constraint to ~&gt;18.0 by Romain Deville ([`9ee0017`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/9ee00171d4efaaf862c9a9ede6bc009e059e72d7)) 🔏
+
+### 🔊 Others
+
+  * 📝 Update README by Romain Deville ([`69c45c9`](https://framagit.org/rdeville-public/opentofu/gitlab-repository/-/commit/69c45c995ef1f31584f35c47be152121a54aff3c)) 🔏
+
 ## v0.13.0 (2025-03-27)
 
 ### ✨ Minor
